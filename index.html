@@ -392,7 +392,14 @@
   .partner-box h2{font-size:clamp(24px,3vw,32px);color:var(--paper);margin-bottom:14px;max-width:22ch;}
   .partner-box p{color:var(--muted-on-dark);font-size:15px;max-width:56ch;}
   .partner-box .btn{flex-shrink:0;}
-  @media (max-width:560px){.partner-box{padding:36px 26px;}}
+  /* aproxima a caixa Origenow da seção "O que entregamos" acima */
+  #produtos{padding-bottom:52px;}
+  #parceria{padding-top:40px;}
+  @media (max-width:560px){
+    .partner-box{padding:36px 26px;}
+    #produtos{padding-bottom:36px;}
+    #parceria{padding-top:28px;}
+  }
 
   /* ---------- método timeline ---------- */
   .timeline{
