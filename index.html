@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hochburg · Testes de Intrusão, Diagnóstico e Resposta a Incidentes</title>
-<meta name="description" content="Hochburg — testes de intrusão, diagnóstico e resposta a incidentes. Ofensiva estruturada, revisada por dupla camada e documentada, sob escopo assinado e NDA mútuo.">
+<title>Hochburg · Sites de Alta Conversão para a Era da IA</title>
+<meta name="description" content="A Hochburg constrói sites institucionais, landing pages e lojas virtuais rápidos, seguros e prontos para IA. PageSpeed 90%+, robots.txt e llm.txt, eventos e métricas configurados para Google, Meta e TikTok. A partir de R$1.200, com 1 ano de suporte.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://hochburg.com.br/">
 
@@ -16,40 +16,46 @@
 
 <!-- Open Graph / Facebook, LinkedIn, WhatsApp -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Hochburg Cybersecurity">
+<meta property="og:site_name" content="Hochburg">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://hochburg.com.br/">
-<meta property="og:title" content="Hochburg · Testes de Intrusão, Diagnóstico e Resposta a Incidentes">
-<meta property="og:description" content="A Hochburg reproduz o que um invasor real faria — dentro de escopo assinado, sob NDA mútuo, com evidência auditável em cada achado registrado.">
+<meta property="og:title" content="Hochburg · Sites de Alta Conversão para a Era da IA">
+<meta property="og:description" content="Site lento, WordPress inchado e brecha de segurança são venda perdida e marca queimada. A Hochburg reconstrói tudo do zero, rápido, blindado e legível para gente e para IA. A partir de R$1.200.">
 <meta property="og:image" content="https://hochburg.com.br/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Hochburg Cybersecurity — testes de intrusão, diagnóstico e resposta">
+<meta property="og:image:alt" content="Hochburg, sites de alta conversão rápidos e seguros">
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hochburg · Testes de Intrusão, Diagnóstico e Resposta a Incidentes">
-<meta name="twitter:description" content="A Hochburg reproduz o que um invasor real faria — dentro de escopo assinado, sob NDA mútuo, com evidência auditável em cada achado registrado.">
+<meta name="twitter:title" content="Hochburg · Sites de Alta Conversão para a Era da IA">
+<meta name="twitter:description" content="Site lento, WordPress inchado e brecha de segurança são venda perdida e marca queimada. A Hochburg reconstrói tudo do zero, rápido, blindado e legível para gente e para IA.">
 <meta name="twitter:image" content="https://hochburg.com.br/og-image.png">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Hochburg Cybersecurity",
-  "description": "Testes de intrusão, diagnóstico e resposta a incidentes. Ofensiva estruturada, revisada e documentada, sob escopo e NDA.",
+  "name": "Hochburg",
+  "description": "Criação de sites institucionais, landing pages de alta conversão e lojas virtuais rápidos (PageSpeed 90%+), seguros e otimizados para buscadores e IAs, com eventos e métricas prontos para Google, Meta e TikTok. Um ano de suporte incluso.",
   "url": "https://hochburg.com.br/",
   "email": "contato@hochburg.com.br",
-  "telephone": "+553172359927",
+  "telephone": "+5511926391931",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "R. Rio Grande do Norte, 1435, Savassi",
-    "addressLocality": "Belo Horizonte",
-    "addressRegion": "MG",
-    "postalCode": "31130-138",
+    "streetAddress": "Av. Brigadeiro Faria Lima, 1811, Jardim Paulistano",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "postalCode": "01452-001",
     "addressCountry": "BR"
   },
   "areaServed": "BR",
+  "priceRange": "R$1.200+",
+  "makesOffer": [
+    { "@type": "Offer", "name": "Site institucional de alta conversão", "priceCurrency": "BRL", "price": "1200" },
+    { "@type": "Offer", "name": "Landing page para campanhas", "priceCurrency": "BRL", "price": "1200" },
+    { "@type": "Offer", "name": "Loja virtual própria", "priceCurrency": "BRL", "price": "2500" }
+  ],
   "sameAs": []
 }
 </script>
@@ -70,6 +76,7 @@
     --line-soft:#e2e2e3;
     --accent:#a53329;
     --accent-2:#c2483c;
+    --good:#3f7a4d;
     --paper-on-dark:#f2f2f3;
     --line-on-dark:rgba(242,242,243,.14);
     --muted-on-dark:#a7a8a9;
@@ -118,6 +125,8 @@
   h3{font-size:19px;letter-spacing:-.01em;}
   p{color:var(--muted);}
   section.dark p{color:var(--muted-on-dark);}
+  code{font-family:var(--ff-mono);font-size:.88em;background:rgba(165,51,41,.1);color:var(--accent);padding:1px 6px;border-radius:2px;}
+  section.dark code{background:rgba(242,242,243,.1);color:var(--paper);}
 
   .section-head{max-width:640px;margin-bottom:56px;}
   .section-head p{margin-top:16px;font-size:16.5px;}
@@ -137,6 +146,9 @@
   .btn-outline:hover{background:var(--ink);color:var(--paper);}
   section.dark .btn-outline{border-color:rgba(242,242,243,.35);color:var(--paper);}
   section.dark .btn-outline:hover{background:var(--paper);color:var(--ink);}
+  /* hero outline button: readable at rest, no hover state */
+  .hero .btn-outline{border-color:rgba(242,242,243,.35);color:var(--paper);}
+  .hero .btn-outline:hover{background:transparent;color:var(--paper);transform:none;}
   .btn svg{width:14px;height:14px;}
 
   /* ---------- logo mark ---------- */
@@ -159,9 +171,9 @@
     display:flex;align-items:center;justify-content:space-between;
     height:76px;
   }
-  nav.primary-nav{display:flex;align-items:center;gap:34px;}
+  nav.primary-nav{display:flex;align-items:center;gap:26px;}
   nav.primary-nav a{
-    font-family:var(--ff-mono);font-size:12.5px;font-weight:500;letter-spacing:.06em;
+    font-family:var(--ff-mono);font-size:12.5px;font-weight:500;letter-spacing:.05em;
     text-transform:uppercase;color:var(--muted);
     position:relative;padding:6px 0;
     transition:color .15s ease;
@@ -318,6 +330,69 @@
   .service-card .idx{font-family:var(--ff-mono);font-size:12px;color:var(--muted-2);margin-bottom:20px;}
   .service-card h3{margin-bottom:10px;}
   .service-card p{font-size:14px;flex-grow:1;}
+  .service-card .price{
+    font-family:var(--ff-mono);font-size:12.5px;font-weight:600;letter-spacing:.03em;
+    color:var(--accent);margin-top:16px;
+  }
+
+  /* ---------- benchmark bars (pagespeed) ---------- */
+  .bench{margin-top:52px;border:1px solid var(--line);background:var(--card);padding:32px 32px 28px;}
+  .bench-head{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--ff-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);margin-bottom:28px;
+  }
+  .bench-head svg{width:20px;height:20px;color:var(--accent);flex-shrink:0;}
+  .bench-row{margin-bottom:22px;}
+  .bench-row:last-of-type{margin-bottom:0;}
+  .bench-top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--ff-mono);font-size:12px;margin-bottom:8px;}
+  .bench-label{color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+  .bench-score{font-weight:700;font-size:15px;color:var(--ink);}
+  .bench-track{position:relative;height:12px;background:var(--paper-alt);border-radius:2px;}
+  .bench-fill{height:100%;border-radius:2px;}
+  .bench-fill.bad{background:var(--accent);}
+  .bench-fill.good{background:var(--good);}
+  .bench-track::after{content:"";position:absolute;top:-5px;bottom:-5px;left:90%;width:1px;background:var(--muted-2);}
+  .bench-note{margin-top:22px;font-family:var(--ff-mono);font-size:10.5px;color:var(--muted-2);line-height:1.55;}
+
+  /* ---------- integrações / logos ---------- */
+  .logo-strip{
+    display:flex;flex-wrap:wrap;align-items:center;gap:16px 40px;
+    padding:26px 0;margin-top:8px;
+    border-top:1px solid var(--line-on-dark);border-bottom:1px solid var(--line-on-dark);
+  }
+  .logo-strip .lbl{font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-on-dark);margin-right:6px;}
+  .logo-strip .brandmark{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:var(--paper);}
+  .logo-strip .brandmark svg{width:22px;height:22px;display:block;flex-shrink:0;}
+
+  /* ---------- split: explicação IA + cards de resumo ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:8px;}
+  .split .ticks li{position:relative;padding-left:24px;margin-bottom:12px;font-size:14px;color:var(--muted);}
+  .split .ticks li b{color:var(--ink);font-weight:700;}
+  section.dark .split .ticks li{color:var(--muted-on-dark);}
+  section.dark .split .ticks li b{color:var(--paper);}
+  .split .ticks li::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;border:1px solid var(--accent);}
+  .split .split-foot{font-size:13.5px;margin-top:18px;}
+  .ai-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;color:var(--ink);}
+  .ai-card + .ai-card{margin-top:16px;}
+  .ai-card .ai-head{display:flex;align-items:center;gap:9px;font-family:var(--ff-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:14px;}
+  .ai-card .ai-head svg{width:15px;height:15px;color:var(--accent);flex-shrink:0;}
+  .ai-card .ai-body{font-size:14px;color:var(--ink);line-height:1.62;}
+  .ai-card .ai-body b{font-weight:700;}
+  .ai-card.bad .ai-body{color:var(--muted);}
+  .ai-card .ai-src{margin-top:16px;padding-top:12px;border-top:1px solid var(--line-soft);font-family:var(--ff-mono);font-size:10.5px;color:var(--muted-2);}
+
+  /* ---------- parceria (Origenow) ---------- */
+  .partner-box{
+    background:var(--ink-2);color:var(--paper);border-radius:var(--radius);
+    padding:52px 48px;display:flex;gap:44px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  }
+  .partner-box .p-text{flex:1 1 440px;}
+  .partner-box .p-eyebrow{font-family:var(--ff-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .partner-box h2{font-size:clamp(24px,3vw,32px);color:var(--paper);margin-bottom:14px;max-width:22ch;}
+  .partner-box p{color:var(--muted-on-dark);font-size:15px;max-width:56ch;}
+  .partner-box .btn{flex-shrink:0;}
+  @media (max-width:560px){.partner-box{padding:36px 26px;}}
 
   /* ---------- método timeline ---------- */
   .timeline{
@@ -413,6 +488,15 @@
   }
   .footer-col a,.footer-col span{display:block;font-size:14px;color:var(--paper);margin-bottom:12px;opacity:.85;}
   .footer-col a:hover{color:var(--accent);opacity:1;}
+  .footer-social{display:flex;gap:12px;margin-top:22px;}
+  .footer-social a{
+    width:36px;height:36px;border-radius:50%;flex-shrink:0;
+    border:1px solid var(--line-on-dark);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper);transition:border-color .15s ease, transform .15s ease;
+  }
+  .footer-social a:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .footer-social svg{width:17px;height:17px;display:block;}
   .footer-bottom{
     display:flex;justify-content:space-between;align-items:center;padding-top:28px;
     font-size:12.5px;flex-wrap:wrap;gap:12px;
@@ -434,6 +518,7 @@
     .hero-stats{grid-template-columns:1fr;gap:20px;}
     .card-grid-3{grid-template-columns:1fr;}
     .services-grid{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;gap:34px;}
     .timeline{grid-template-columns:1fr;gap:36px;}
     .timeline::before{display:none;}
     .conduct-grid{grid-template-columns:1fr;}
@@ -441,6 +526,7 @@
     .cert-row .app{grid-column:1 / -1;}
     .contact-layout{grid-template-columns:1fr;gap:56px;}
     .form-row{grid-template-columns:1fr;}
+    .partner-box{gap:28px;}
     .footer-top{flex-direction:column;}
     .footer-cols{gap:48px;}
   }
@@ -456,7 +542,7 @@
 <!-- ================= HEADER ================= -->
 <header>
   <div class="wrap">
-    <a href="#inicio" class="brand" aria-label="Hochburg — início">
+    <a href="#inicio" class="brand" aria-label="Hochburg, início">
       <span class="logo-mark">
         <svg viewBox="0 0 185.22 185.22" xmlns="http://www.w3.org/2000/svg">
           <path fill="currentColor" d="M106.14,105.76l58.75,48.68h-26.02l-78.05-63.78h76.37c.3,0,4.2-3.9,4.2-4.2v-33.57c0-.18-2.34-2.52-2.52-2.52H31.45c-3.65,0-3.65-16.79,0-16.79h107.42c4.68,0,13.57,6.91,15.73,11.12,2.8,5.45,2.92,39.41,1.51,46.4-1.02,5.06-9.09,14.65-13.88,14.65h-36.09Z"/>
@@ -467,16 +553,17 @@
     </a>
 
     <nav class="primary-nav" id="primaryNav">
-      <a href="#sobre" data-nav>Sobre</a>
-      <a href="#servicos" data-nav>Serviços</a>
-      <a href="#metodo" data-nav>Método</a>
-      <a href="#conduta" data-nav>Conduta</a>
-      <a href="#certificacoes" data-nav>Certificações</a>
+      <a href="#abordagem" data-nav>Abordagem</a>
+      <a href="#problema" data-nav>Problema</a>
+      <a href="#produtos" data-nav>Produtos</a>
+      <a href="#padrao" data-nav>Padrão</a>
+      <a href="#busca-ia" data-nav>Busca IA</a>
+      <a href="#seguranca" data-nav>Segurança</a>
       <a href="#contato" data-nav>Contato</a>
     </nav>
 
     <div class="header-actions">
-      <a href="#contato" class="btn btn-primary"><span class="long">Solicitar</span> diagnóstico</a>
+      <a href="#contato" class="btn btn-primary"><span class="long">Solicitar</span> orçamento</a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -487,7 +574,7 @@
 <!-- ================= MOBILE NAV OVERLAY ================= -->
 <div class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-top">
-    <a href="#inicio" class="brand" aria-label="Hochburg — início">
+    <a href="#inicio" class="brand" aria-label="Hochburg, início">
       <span class="logo-mark">
         <svg viewBox="0 0 185.22 185.22" xmlns="http://www.w3.org/2000/svg">
           <path fill="currentColor" d="M106.14,105.76l58.75,48.68h-26.02l-78.05-63.78h76.37c.3,0,4.2-3.9,4.2-4.2v-33.57c0-.18-2.34-2.52-2.52-2.52H31.45c-3.65,0-3.65-16.79,0-16.79h107.42c4.68,0,13.57,6.91,15.73,11.12,2.8,5.45,2.92,39.41,1.51,46.4-1.02,5.06-9.09,14.65-13.88,14.65h-36.09Z"/>
@@ -502,26 +589,28 @@
   </div>
 
   <nav class="mobile-nav-links">
-    <a href="#sobre" data-mobile-nav>Sobre</a>
-    <a href="#servicos" data-mobile-nav>Serviços</a>
+    <a href="#abordagem" data-mobile-nav>Abordagem</a>
+    <a href="#problema" data-mobile-nav>Problema</a>
+    <a href="#produtos" data-mobile-nav>Produtos</a>
+    <a href="#padrao" data-mobile-nav>Padrão</a>
+    <a href="#busca-ia" data-mobile-nav>Busca com IA</a>
     <a href="#metodo" data-mobile-nav>Método</a>
-    <a href="#conduta" data-mobile-nav>Conduta</a>
-    <a href="#certificacoes" data-mobile-nav>Certificações</a>
+    <a href="#seguranca" data-mobile-nav>Segurança</a>
     <a href="#contato" data-mobile-nav>Contato</a>
   </nav>
 
   <div class="mobile-nav-bottom">
-    <a href="#contato" class="btn btn-primary" data-mobile-nav>Solicitar diagnóstico</a>
+    <a href="#contato" class="btn btn-primary" data-mobile-nav>Solicitar orçamento</a>
     <div class="mobile-nav-contact">
       <a href="mailto:contato@hochburg.com.br">contato@hochburg.com.br</a>
-      <a href="https://wa.me/553172359927" target="_blank" rel="noopener">WhatsApp · +55 31 7235-9927</a>
+      <a href="https://wa.me/5511926391931" target="_blank" rel="noopener">WhatsApp · +55 11 92639-1931</a>
     </div>
   </div>
 </div>
 
 <!-- ================= WHATSAPP FLOATING BUTTON ================= -->
 <a class="whatsapp-fab" id="whatsappFab"
-   href="https://wa.me/553172359927?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Hochburg%20e%20quero%20saber%20mais%20sobre%20um%20diagn%C3%B3stico%20de%20seguran%C3%A7a."
+   href="https://wa.me/5511926391931?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Hochburg%20e%20quero%20um%20or%C3%A7amento%20de%20site%20ou%20loja%20virtual."
    target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.34.64 4.53 1.76 6.4L4 29l7.76-1.7a11.9 11.9 0 0 0 4.26.78h.01c6.63 0 12.02-5.4 12.02-12.02C28.05 8.4 22.65 3 16.02 3zm0 21.86h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-4.6 1.01 1.03-4.48-.24-.37a9.85 9.85 0 0 1-1.52-5.29c0-5.46 4.45-9.9 9.92-9.9 2.65 0 5.14 1.03 7.01 2.9a9.83 9.83 0 0 1 2.9 6.99c0 5.47-4.45 9.92-9.92 9.92zm5.44-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
 </a>
@@ -532,175 +621,366 @@
   <div class="hero-scanline"></div>
   <div class="wrap">
     <div class="hero-badge-row reveal">
-      <span class="hero-badge">Testes de intrusão</span>
-      <span class="hero-badge">Diagnóstico</span>
-      <span class="hero-badge">Resposta</span>
+      <span class="hero-badge">Sites institucionais</span>
+      <span class="hero-badge">Landing Pages</span>
+      <span class="hero-badge">Lojas Virtuais</span>
     </div>
-    <h1 class="reveal">Sua superfície de ataque, testada antes que alguém a explore.</h1>
-    <p class="hero-sub reveal">A Hochburg reproduz o que um invasor real faria — dentro de escopo assinado, sob NDA mútuo, com evidência auditável em cada achado registrado.</p>
+    <h1 class="reveal">Seu site foi feito para 2015. Seus clientes (e as IAs) já vivem em 2026.</h1>
+    <p class="hero-sub reveal">Site lento, WordPress inchado e brecha de segurança não são detalhe técnico. É venda que não acontece e marca que perde credibilidade. A Hochburg reconstrói tudo do zero, rápido, blindado e pronto para ser lido por gente e por inteligência artificial.</p>
     <div class="hero-ctas reveal">
       <a href="#contato" class="btn btn-primary">
-        Solicitar diagnóstico
+        Solicitar orçamento
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a href="#metodo" class="btn btn-outline">Como trabalhamos</a>
+      <a href="#produtos" class="btn btn-outline">Ver o que entregamos</a>
     </div>
 
     <div class="hero-stats reveal">
       <div class="hero-stat">
-        <b>Escopo &amp; NDA</b>
-        <span>Nada é testado sem autorização formal e janela acordada</span>
+        <b>PageSpeed 90%+</b>
+        <span>Padrão de entrega, não meta. É o mínimo que vai ao ar</span>
       </div>
       <div class="hero-stat">
-        <b>Dupla camada</b>
-        <span>Todo laudo passa por revisão de um segundo analista</span>
+        <b>robots.txt + llm.txt</b>
+        <span>Todo site sai legível para buscadores e para as IAs</span>
       </div>
       <div class="hero-stat">
-        <b>Zero exploração</b>
-        <span>O acesso é comprovado — nenhum dado é copiado ou usado</span>
+        <b>1 ano de suporte</b>
+        <span>Manutenção, pequenas alterações e hospedagem, tudo por nossa conta</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= SOBRE ================= -->
-<section class="section" id="sobre">
+<!-- ================= ABORDAGEM ================= -->
+<section class="section" id="abordagem">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow"><span class="num">01</span><span class="dot">·</span>A HOCHBURG</div>
-      <h2>Quem faz o teste</h2>
-      <p>Ofensiva estruturada, revisada e documentada — não um scanner automatizado rodando sozinho.</p>
+      <div class="eyebrow">A ABORDAGEM</div>
+      <h2>Não somos só mais uma agência de site</h2>
+      <p>Agência comum entrega um layout bonito e some. A Hochburg entrega presença: o seu negócio encontrável, citável e confiável para gente e para as IAs que hoje respondem no lugar do Google.</p>
     </div>
 
     <div class="card-grid-3 reveal">
       <div class="card">
         <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9l-2 2 2 2M16 9l2 2-2 2M13 8l-2 8"/></svg>
         </div>
-        <h3>Método ofensivo</h3>
-        <p>Reproduzimos a superfície e as ferramentas disponíveis a um atacante externo. O teste encerra no limite definido em escopo.</p>
+        <h3>Pacote que a IA lê</h3>
+        <p><code>llm.txt</code>, <code>robots.txt</code> e dados estruturados em todo site. É o que ChatGPT, Gemini e Perplexity usam como fonte. A maioria das agências entrega só o visual.</p>
       </div>
       <div class="card">
         <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h6a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H9l-3 3V8"/><path d="M17 6h1"/></svg>
         </div>
-        <h3>Equipe técnica</h3>
-        <p>Analistas de intrusão, segurança de aplicação e infraestrutura. Todo laudo passa por revisão de um segundo analista antes da entrega.</p>
+        <h3>Conteúdo que a IA cita</h3>
+        <p>Texto em blocos que o modelo consegue extrair: pergunta e resposta objetiva, dado, negócio identificado. Não é texto de marketing genérico que a IA ignora.</p>
       </div>
       <div class="card">
         <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c-5 0-9 4.5-9 7s4 7 9 7 9-4.5 9-7-4-7-9-7z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <h3>Registro auditável</h3>
-        <p>Cada achado registra evidência, endpoint, horário e passo de reprodução — verificáveis de forma independente.</p>
+        <h3>Presença monitorada</h3>
+        <p>Acompanhamos como seu negócio aparece no resumo de IA do Google, no ChatGPT e no Perplexity, e ajustamos o que os modelos leem.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20a8 8 0 1 1 16 0"/><path d="M12 20l5-6"/></svg>
+        </div>
+        <h3>Rastreável por inteiro</h3>
+        <p>O robô de IA tem tempo limitado por site. Com PageSpeed 90%+ ele lê tudo; site lento é rastreado pela metade.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+        </div>
+        <h3>Tráfego de IA medido</h3>
+        <p>Eventos prontos para separar quem chega por resposta de IA (chatgpt.com, perplexity.ai, gemini) do tráfego de busca tradicional.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>
+        </div>
+        <h3>Blindado para exposição</h3>
+        <p>Quem veio de teste de intrusão sabe: o robô que rastreia seu site não pode achar formulário aberto nem dado de cliente à mostra.</p>
       </div>
     </div>
 
-    <p class="callout-line reveal">O laudo é estruturado em duas camadas de leitura: decisão executiva e execução técnica.</p>
+    <p class="callout-line reveal">Site bonito qualquer um faz. Presença na era da IA exige método, e é aí que a Hochburg é diferente.</p>
   </div>
 </section>
 
-<!-- ================= SERVIÇOS ================= -->
-<section class="section alt" id="servicos">
+<!-- ================= PROBLEMA ================= -->
+<section class="section alt" id="problema">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow"><span class="num">02</span><span class="dot">·</span>SERVIÇOS</div>
-      <h2>Onde entramos</h2>
-      <p>Do teste inicial à correção — e ao acompanhamento contínuo depois dela.</p>
+      <div class="eyebrow"><span class="num">01</span><span class="dot">·</span>O PROBLEMA</div>
+      <h2>O que um site defasado custa</h2>
+      <p>Não é só "ficar feio". Site velho vaza dinheiro todo dia em venda perdida, posição no Google e confiança.</p>
+    </div>
+
+    <div class="card-grid-3 reveal">
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3>Lentidão espanta cliente</h3>
+        <p>Cada segundo a mais de carregamento derruba a conversão e afunda seu ranqueamento. Site pesado é anúncio pago jogado fora e visitante que fecha a aba.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V7l9-5z"/><path d="M12 8v4M12 16h.01"/></svg>
+        </div>
+        <h3>WordPress feito nas coxas</h3>
+        <p>Tema comprado, vinte plugins desatualizados, banco inchado. Quebra sozinho, abre brecha e ninguém consegue mexer sem estragar outra coisa.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="1"/><path d="M7 11V8a5 5 0 0 1 9-3"/></svg>
+        </div>
+        <h3>Brecha de "vibe coder"</h3>
+        <p>Site montado no improviso por quem não entende de segurança deixa formulário, login e painel expostos. A invasão não manda aviso antes.</p>
+      </div>
+    </div>
+
+    <div class="bench reveal">
+      <div class="bench-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20a8 8 0 1 1 16 0"/><path d="M12 20l5-6"/></svg>
+        Google PageSpeed Insights · comparativo ilustrativo (mobile)
+      </div>
+      <div class="bench-row">
+        <div class="bench-top">
+          <span class="bench-label">Site WordPress típico</span>
+          <span class="bench-score">38</span>
+        </div>
+        <div class="bench-track"><div class="bench-fill bad" style="width:38%"></div></div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-top">
+          <span class="bench-label">Padrão Hochburg</span>
+          <span class="bench-score">96</span>
+        </div>
+        <div class="bench-track"><div class="bench-fill good" style="width:96%"></div></div>
+      </div>
+      <p class="bench-note">Faixas do Google PageSpeed Insights: 0 a 49 ruim, 50 a 89 médio, 90 a 100 bom. A linha vertical marca o mínimo de 90 que a Hochburg entrega em todo projeto. Valores de exemplo.</p>
+    </div>
+
+    <p class="callout-line reveal">Cada ponto de PageSpeed que falta e cada brecha aberta é dinheiro indo para o concorrente, todo dia, em silêncio.</p>
+  </div>
+</section>
+
+<!-- ================= PRODUTOS ================= -->
+<section class="section" id="produtos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="num">02</span><span class="dot">·</span>PRODUTOS</div>
+      <h2>O que entregamos</h2>
+      <p>Preço aberto, escopo claro e um ano de suporte em todos. Automação e tráfego entram quando você quiser.</p>
     </div>
 
     <div class="services-grid reveal">
       <div class="service-card">
         <span class="idx">01</span>
-        <h3>Pentest &amp; diagnóstico</h3>
-        <p>Testes de intrusão em aplicações, integrações e infraestrutura, com escopo e janela definidos em contrato.</p>
+        <h3>Site institucional</h3>
+        <p>Múltiplas páginas, estrutura pensada para SEO e para transformar visita em contato. Rápido e blindado desde a primeira linha.</p>
+        <span class="price">A partir de R$1.200</span>
       </div>
       <div class="service-card">
         <span class="idx">02</span>
-        <h3>Resposta a incidente</h3>
-        <p>Contenção, revogação de acesso e reconstrução segura diante de uma exposição já confirmada.</p>
+        <h3>Landing page de alta conversão</h3>
+        <p>Página única, uma campanha, uma ação. Feita para o tráfego pago render de verdade, com os eventos de conversão já no lugar.</p>
+        <span class="price">A partir de R$1.200</span>
       </div>
       <div class="service-card">
         <span class="idx">03</span>
-        <h3>Retest e validação</h3>
-        <p>Reexecução do mesmo teste após a correção, com registro formal do resultado obtido.</p>
+        <h3>Loja virtual própria</h3>
+        <p>Loja de verdade, com carrinho e checkout, não um catálogo de produtos. Sua, sem depender de marketplace. Operação e inteligência de dados com a parceira Origenow.</p>
+        <span class="price">A partir de R$2.500 · suporte 1 ano grátis</span>
       </div>
       <div class="service-card">
         <span class="idx">04</span>
-        <h3>Treinamento técnico</h3>
-        <p>Sessões práticas sobre gestão de segredo, permissão e log para o time de engenharia.</p>
+        <h3>Métricas e tráfego prontos</h3>
+        <p>Eventos e conversões já configurados para GA4, Search Console, Google Meu Negócio, Google Ads, Meta e TikTok Ads.</p>
+        <span class="price">Incluso em todo projeto</span>
       </div>
       <div class="service-card">
         <span class="idx">05</span>
-        <h3>Monitoramento contínuo</h3>
-        <p>Alerta de alteração fora do padrão em acesso, preço, estoque ou script — com equipe de resposta designada.</p>
+        <h3>Automação de IA no WhatsApp</h3>
+        <p>Atendimento e qualificação de lead automatizados no WhatsApp, integrados ao site.</p>
+        <span class="price">Opcional · sob demanda</span>
       </div>
       <div class="service-card">
         <span class="idx">06</span>
-        <h3>Segurança como serviço</h3>
-        <p>Na ausência de equipe interna, assumimos a função, o plano de correção e a interlocução com fornecedores.</p>
+        <h3>Gestão de tráfego Google e Meta</h3>
+        <p>Criação e gestão das campanhas pagas depois que o site entra no ar, com leitura das métricas que já deixamos prontas.</p>
+        <span class="price">Opcional · sob demanda</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= MÉTODO ================= -->
-<section class="section dark" id="metodo">
+<!-- ================= PARCERIA (ORIGENOW) ================= -->
+<section class="section" id="parceria">
+  <div class="wrap">
+    <div class="partner-box reveal">
+      <div class="p-text">
+        <div class="p-eyebrow">Parceria</div>
+        <h2>Origenow: inteligência para e-commerce e operação de alto nível</h2>
+        <p>Sua loja não termina no checkout. Com a Origenow, nossa parceira, você conecta previsão de demanda, automação de operação e inteligência de dados. É a estrutura que separa quem vende de quem escala.</p>
+      </div>
+      <a href="https://origenow.com.br" target="_blank" rel="noopener" class="btn btn-primary">
+        Conhecer a Origenow
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PADRÃO ================= -->
+<section class="section dark" id="padrao">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow"><span class="num">03</span><span class="dot">·</span>MÉTODO</div>
-      <h2>Da descoberta à correção</h2>
-      <p>Cada achado crítico segue um plano de ação com prazo — não fica só registrado em relatório.</p>
+      <div class="eyebrow"><span class="num">03</span><span class="dot">·</span>O PADRÃO HOCHBURG</div>
+      <h2>O que vem em todo site</h2>
+      <p>Isto não é pacote premium nem upsell. É o mínimo que a Hochburg coloca no ar em site institucional, landing page ou loja.</p>
     </div>
 
     <div class="timeline reveal">
       <div class="tl-step">
         <div class="tl-dot">01</div>
-        <div class="tl-time">Primeiras 4 horas</div>
-        <h3>Contenção</h3>
-        <p>Revogar credenciais expostas, gerar novos acessos e trocar segredos comprometidos.</p>
+        <div class="tl-time">Velocidade</div>
+        <h3>PageSpeed 90%+</h3>
+        <p>Medido no Google PageSpeed, no celular e no desktop. Abaixo disso, não vai ao ar.</p>
       </div>
       <div class="tl-step">
         <div class="tl-dot">02</div>
-        <div class="tl-time">48 horas</div>
-        <h3>Auditoria</h3>
-        <p>Mapear o que foi exposto, alterado ou acessado enquanto a credencial esteve comprometida.</p>
+        <div class="tl-time">IA-ready</div>
+        <h3>robots.txt + llm.txt</h3>
+        <p>Buscadores e modelos de IA leem seu site do jeito certo, com dados estruturados e conteúdo descrito para eles.</p>
       </div>
       <div class="tl-step">
         <div class="tl-dot">03</div>
-        <div class="tl-time">7 dias</div>
-        <h3>Rastreamento</h3>
-        <p>Log de IP, hora e endpoint; segredo fora do repositório; histórico reescrito quando necessário.</p>
+        <div class="tl-time">Medição</div>
+        <h3>Eventos e métricas</h3>
+        <p>Conversões, cliques e formulários prontos para plugar em Google, Meta e TikTok, sem depender de outro fornecedor.</p>
       </div>
       <div class="tl-step">
         <div class="tl-dot">04</div>
-        <div class="tl-time">Permanente</div>
-        <h3>Prevenção</h3>
-        <p>Segredo só no servidor, permissão mínima por aplicativo, alerta de mudança anômala.</p>
+        <div class="tl-time">Infraestrutura</div>
+        <h3>Segurança de origem</h3>
+        <p>Sem CMS inchado, sem plugin abandonado, sem formulário exposto. Hospedado em infraestrutura da nova era, somos parceiros Railway, segura e escalável, nada de servidor compartilhado de Hostinger ou HostGator.</p>
       </div>
     </div>
 
-    <p class="callout-line reveal">Nenhuma etapa depende de acesso a sistemas internos — o achado é registrado e corrigido antes de virar incidente.</p>
+    <div class="logo-strip reveal">
+      <span class="lbl">Pronto para conectar</span>
+      <span class="brandmark">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Google
+      </span>
+      <span class="brandmark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20a8 8 0 1 1 16 0"/><path d="M12 20l5-6"/></svg>
+        PageSpeed
+      </span>
+      <span class="brandmark">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#1877F2" d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        Facebook
+      </span>
+      <span class="brandmark">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#E4405F" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38a3.7 3.7 0 0 1 1.38-.9c.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.8c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.6-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.65 3.65 0 0 0-.88-1.35 3.65 3.65 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.6-.07-4.74-.07zm0 3.06a4.98 4.98 0 1 1 0 9.96 4.98 4.98 0 0 1 0-9.96zm0 1.8a3.18 3.18 0 1 0 0 6.36 3.18 3.18 0 0 0 0-6.36zm5.16-.9a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z"/></svg>
+        Instagram
+      </span>
+      <span class="brandmark">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82a4.28 4.28 0 0 1-1.07-2.82h-3.1v12.6a2.6 2.6 0 0 1-2.6 2.5 2.6 2.6 0 0 1 0-5.2c.27 0 .53.04.77.12V7.8a5.7 5.7 0 0 0-.77-.05 5.7 5.7 0 1 0 5.7 5.7V8.9a7.3 7.3 0 0 0 4.27 1.37V7.16a4.28 4.28 0 0 1-3.2-1.34z"/></svg>
+        TikTok
+      </span>
+      <span class="brandmark">
+        <svg viewBox="0 0 32 32" fill="#25D366" aria-hidden="true"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.34.64 4.53 1.76 6.4L4 29l7.76-1.7a11.9 11.9 0 0 0 4.26.78h.01c6.63 0 12.02-5.4 12.02-12.02C28.05 8.4 22.65 3 16.02 3zm0 21.86h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-4.6 1.01 1.03-4.48-.24-.37a9.85 9.85 0 0 1-1.52-5.29c0-5.46 4.45-9.9 9.92-9.9 2.65 0 5.14 1.03 7.01 2.9a9.83 9.83 0 0 1 2.9 6.99c0 5.47-4.45 9.92-9.92 9.92zm5.44-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+        WhatsApp
+      </span>
+    </div>
+
+    <p class="callout-line reveal">A Hochburg começou fazendo teste de intrusão. Segurança aqui não é um item da lista, é o ponto de partida de cada projeto.</p>
   </div>
 </section>
 
-<!-- ================= CONDUTA ================= -->
-<section class="section" id="conduta">
+<!-- ================= BUSCA COM IA ================= -->
+<section class="section alt" id="busca-ia">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow"><span class="num">04</span><span class="dot">·</span>CONDUTA</div>
-      <h2>Conduta e limites</h2>
-      <p>O que separa um teste autorizado de uma invasão é o escopo — e nós o levamos a sério.</p>
+      <div class="eyebrow">BUSCA COM IA</div>
+      <h2>O que muda com o resumo de IA do Google</h2>
+      <p>Hoje, quem responde primeiro no Google é o Gemini, no bloco de resumo acima dos links. ChatGPT, Perplexity e Copilot fazem igual. Nenhum lê seu site inteiro: eles pegam o que o <code>robots.txt</code> libera e usam o <code>llm.txt</code> e os dados estruturados como fonte curta.</p>
+    </div>
+
+    <div class="split reveal">
+      <div>
+        <ul class="ticks">
+          <li><b>robots.txt limita</b>: bloqueia área de teste, carrinho, filtros e páginas duplicadas que só poluem o resumo.</li>
+          <li><b>llm.txt otimiza</b>: um resumo em texto puro do negócio (nome, oferta, preço, cidade, contato) pronto para a IA citar sem inventar.</li>
+          <li><b>Dados estruturados conectam</b>: preço, avaliação, endereço e horário aparecem formatados na busca e no resumo.</li>
+        </ul>
+        <p class="split-foot">Sem esses arquivos, a IA preenche a lacuna com o que sobra: um texto de rodapé, um comentário de terceiro ou a descrição do concorrente.</p>
+      </div>
+      <div>
+        <div class="ai-card bad">
+          <div class="ai-head">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg>
+            Resumo da IA · sem llm.txt
+          </div>
+          <div class="ai-body">Não há dados claros sobre a <b>Ateliê Bloom</b>. Um negócio de nome parecido vende arranjos em São Paulo, com valores a partir de R$ 90. Confirme localização e horário direto com a loja.</div>
+          <div class="ai-src">Fontes: 4 páginas · 1 diretório desatualizado</div>
+        </div>
+        <div class="ai-card good">
+          <div class="ai-head">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg>
+            Resumo da IA · com llm.txt + schema
+          </div>
+          <div class="ai-body">A <b>Ateliê Bloom</b> é uma floricultura na Vila Madalena, em São Paulo, com entrega no mesmo dia. Buquês a partir de R$ 120, pedido por WhatsApp, aberta de segunda a sábado.</div>
+          <div class="ai-src">Fonte: ateliebloom.com.br/llm.txt</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="callout-line reveal">Você escolhe o que a IA mostra do seu negócio. Ou deixa o acaso escolher por você.</p>
+  </div>
+</section>
+
+<!-- ================= MÉTODO ================= -->
+<section class="section" id="metodo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="num">04</span><span class="dot">·</span>MÉTODO</div>
+      <h2>Como fazemos</h2>
+      <p>Do diagnóstico do site atual ao acompanhamento de um ano depois que ele entra no ar.</p>
     </div>
 
     <div class="conduct-grid reveal">
       <div class="conduct-card">
         <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="1"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
         </div>
         <div>
-          <h3>Autorização formal</h3>
-          <p>Nada é testado sem escopo assinado, janela acordada e contato de emergência definido.</p>
+          <h3>Diagnóstico</h3>
+          <p>Olhamos seu site atual: velocidade, segurança, o que trava a venda e o que a IA enxerga. Você recebe o mapa antes de fechar.</p>
+        </div>
+      </div>
+      <div class="conduct-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+        </div>
+        <div>
+          <h3>Construção</h3>
+          <p>Código enxuto, sem tema comprado e sem plugin de risco. Rápido e blindado desde a primeira linha.</p>
+        </div>
+      </div>
+      <div class="conduct-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+        </div>
+        <div>
+          <h3>Métricas ligadas</h3>
+          <p>Entregamos com GA4, Search Console, Google Meu Negócio, Ads, Meta e TikTok já configurados e testados.</p>
         </div>
       </div>
       <div class="conduct-card">
@@ -708,39 +988,21 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>
         </div>
         <div>
-          <h3>Sem exploração de dados</h3>
-          <p>A existência do acesso é comprovada e registrada. Nenhum dado é copiado, utilizado ou divulgado.</p>
-        </div>
-      </div>
-      <div class="conduct-card">
-        <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12h8M8 16h5"/></svg>
-        </div>
-        <div>
-          <h3>Sigilo contratual</h3>
-          <p>NDA mútuo em vigor. O laudo pertence ao contratante; a cópia interna é descartada no prazo contratado.</p>
-        </div>
-      </div>
-      <div class="conduct-card">
-        <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19c-4 0-7.3-2.7-9-7 1.7-4.3 5-7 9-7s7.3 2.7 9 7c-1.7 4.3-5 7-9 7z"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <div>
-          <h3>Divulgação responsável</h3>
-          <p>O achado é comunicado primeiro ao contratante — nunca a terceiros, imprensa ou canais públicos.</p>
+          <h3>Suporte de 1 ano</h3>
+          <p>Durante 12 meses, manutenção, pequenas alterações e atualizações estão inclusas. Hospedagem e detalhe técnico não são problema seu, a gente cuida. Automação de WhatsApp e gestão de tráfego entram como opcional.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= CERTIFICAÇÕES ================= -->
-<section class="section alt" id="certificacoes">
+<!-- ================= SEGURANÇA ================= -->
+<section class="section alt" id="seguranca">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow"><span class="num">05</span><span class="dot">·</span>HOMOLOGAÇÕES</div>
-      <h2>Certificações da equipe</h2>
-      <p>Formação contínua, validada por quem define os padrões do setor.</p>
+      <div class="eyebrow"><span class="num">05</span><span class="dot">·</span>SEGURANÇA</div>
+      <h2>Segurança não é opcional</h2>
+      <p>A Hochburg nasceu procurando brecha em sistema dos outros. A mesma equipe agora constrói o seu site e sabe exatamente o que não deixar aberto.</p>
     </div>
 
     <div class="cert-table reveal">
@@ -754,21 +1016,23 @@
         <span class="name">Cybersecurity Professional Certificate</span>
         <span class="issuer">Google</span>
         <span class="cert-status">Vigente</span>
-        <span class="app">Detecção, resposta e higiene de acesso</span>
+        <span class="app">Higiene de acesso e proteção de formulários e painéis</span>
       </div>
       <div class="cert-row">
         <span class="name">Certified in Cybersecurity (CC)</span>
         <span class="issuer">ISC2</span>
         <span class="cert-status">Vigente</span>
-        <span class="app">Fundamentos e princípios de segurança</span>
+        <span class="app">Fundamentos de segurança aplicados à construção de sites e lojas</span>
       </div>
       <div class="cert-row">
         <span class="name">Security Fundamentals (SC-900)</span>
         <span class="issuer">Microsoft</span>
         <span class="cert-status">Vigente</span>
-        <span class="app">Identidade e conformidade em nuvem</span>
+        <span class="app">Identidade e conformidade na hospedagem em nuvem</span>
       </div>
     </div>
+
+    <p class="callout-line reveal">Site que vende também é site que guarda dado de cliente. Tratamos os dois com o mesmo cuidado.</p>
   </div>
 </section>
 
@@ -778,8 +1042,8 @@
     <div class="contact-layout">
       <div class="reveal">
         <div class="eyebrow"><span class="num">06</span><span class="dot">·</span>CONTATO</div>
-        <h2 style="margin-bottom:20px;">Vamos testar sua superfície de ataque?</h2>
-        <p style="max-width:44ch;margin-bottom:44px;">Conte o contexto do seu ambiente. Respondemos com os próximos passos e uma proposta de escopo.</p>
+        <h2 style="margin-bottom:20px;">Peça um orçamento</h2>
+        <p style="max-width:44ch;margin-bottom:44px;">Diga qual é o seu site hoje (ou se ainda não tem) e o que ele precisa vender. Respondemos com proposta e prazo.</p>
 
         <div class="contact-info-item">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
@@ -792,21 +1056,21 @@
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2z"/></svg></div>
           <div>
             <div class="label">Telefone</div>
-            <div class="value">+55 31 7235-9927</div>
+            <div class="value">+55 11 92639-1931</div>
           </div>
         </div>
         <div class="contact-info-item">
           <div class="icon"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.34.64 4.53 1.76 6.4L4 29l7.76-1.7a11.9 11.9 0 0 0 4.26.78h.01c6.63 0 12.02-5.4 12.02-12.02C28.05 8.4 22.65 3 16.02 3zm0 21.86h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-4.6 1.01 1.03-4.48-.24-.37a9.85 9.85 0 0 1-1.52-5.29c0-5.46 4.45-9.9 9.92-9.9 2.65 0 5.14 1.03 7.01 2.9a9.83 9.83 0 0 1 2.9 6.99c0 5.47-4.45 9.92-9.92 9.92z"/></svg></div>
           <div>
             <div class="label">WhatsApp</div>
-            <div class="value"><a href="https://wa.me/553172359927" target="_blank" rel="noopener">Conversar agora</a></div>
+            <div class="value"><a href="https://wa.me/5511926391931" target="_blank" rel="noopener">Conversar agora</a></div>
           </div>
         </div>
         <div class="contact-info-item">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div>
             <div class="label">Escritório</div>
-            <div class="value">R. Rio Grande do Norte, 1435, Savassi<br>Belo Horizonte · MG · 31130-138</div>
+            <div class="value">Av. Brig. Faria Lima, 1811, Jardim Paulistano<br>São Paulo · SP · 01452-001</div>
           </div>
         </div>
       </div>
@@ -818,8 +1082,8 @@
             <input type="text" id="fname" name="nome" required placeholder="Seu nome">
           </div>
           <div class="field">
-            <label for="fcompany">Empresa</label>
-            <input type="text" id="fcompany" name="empresa" required placeholder="Nome da empresa">
+            <label for="fcompany">Empresa ou negócio</label>
+            <input type="text" id="fcompany" name="empresa" required placeholder="Nome do negócio">
           </div>
         </div>
         <div class="field">
@@ -828,7 +1092,7 @@
         </div>
         <div class="field">
           <label for="fmsg">Mensagem</label>
-          <textarea id="fmsg" name="mensagem" required placeholder="Conte um pouco sobre seu ambiente e o que precisa ser testado."></textarea>
+          <textarea id="fmsg" name="mensagem" required placeholder="Conte qual é o seu site hoje, o endereço dele e o que precisa melhorar ou vender."></textarea>
         </div>
         <button type="submit" class="btn btn-primary">
           Enviar solicitação
@@ -877,29 +1141,50 @@
             </g>
           </svg>
         </span>
-        <p style="max-width:32ch;margin-top:20px;font-size:14px;">Testes de intrusão, diagnóstico e resposta. Ofensiva estruturada, sob escopo e NDA.</p>
+        <p style="max-width:32ch;margin-top:20px;font-size:14px;">Sites institucionais, landing pages e lojas virtuais de alta conversão, rápidos, seguros e prontos para a era da IA.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 3h-3a5 5 0 0 0-5 5v3H4v4h3v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://wa.me/5511926391931" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.34.64 4.53 1.76 6.4L4 29l7.76-1.7a11.9 11.9 0 0 0 4.26.78h.01c6.63 0 12.02-5.4 12.02-12.02C28.05 8.4 22.65 3 16.02 3zm0 21.86h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-4.6 1.01 1.03-4.48-.24-.37a9.85 9.85 0 0 1-1.52-5.29c0-5.46 4.45-9.9 9.92-9.9 2.65 0 5.14 1.03 7.01 2.9a9.83 9.83 0 0 1 2.9 6.99c0 5.47-4.45 9.92-9.92 9.92zm5.44-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+          </a>
+          <a href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82a4.28 4.28 0 0 1-1.07-2.82h-3.1v12.6a2.6 2.6 0 0 1-2.6 2.5 2.6 2.6 0 0 1 0-5.2c.27 0 .53.04.77.12V7.8a5.7 5.7 0 0 0-.77-.05 5.7 5.7 0 1 0 5.7 5.7V8.9a7.3 7.3 0 0 0 4.27 1.37V7.16a4.28 4.28 0 0 1-3.2-1.34z"/></svg>
+          </a>
+        </div>
       </div>
 
       <div class="footer-cols">
         <div class="footer-col">
           <h4>Navegação</h4>
-          <a href="#sobre">Sobre</a>
-          <a href="#servicos">Serviços</a>
+          <a href="#abordagem">Abordagem</a>
+          <a href="#problema">Problema</a>
+          <a href="#produtos">Produtos</a>
+          <a href="#padrao">Padrão</a>
+          <a href="#busca-ia">Busca com IA</a>
           <a href="#metodo">Método</a>
-          <a href="#conduta">Conduta</a>
-          <a href="#certificacoes">Certificações</a>
+          <a href="#seguranca">Segurança</a>
+        </div>
+        <div class="footer-col">
+          <h4>Parceria</h4>
+          <a href="https://origenow.com.br" target="_blank" rel="noopener">origenow.com.br</a>
+          <span>Inteligência para e-commerce e operação de alto nível</span>
         </div>
         <div class="footer-col">
           <h4>Contato</h4>
           <a href="mailto:contato@hochburg.com.br">contato@hochburg.com.br</a>
-          <a href="tel:+553172359927">+55 31 7235-9927</a>
-          <span>Savassi · Belo Horizonte, MG</span>
+          <a href="tel:+5511926391931">+55 11 92639-1931</a>
+          <span>Jardim Paulistano · São Paulo, SP</span>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span class="tag">© 2026 HOCHBURG CYBERSECURITY</span>
+      <span class="tag">© 2026 HOCHBURG</span>
       <span class="tag">HOCHBURG.COM.BR</span>
     </div>
   </div>
@@ -966,9 +1251,9 @@
     const waText = encodeURIComponent(
       `Olá! Meu nome é ${nome}, da empresa ${empresa} (${email}).\n\n${msg}`
     );
-    window.open(`https://wa.me/553172359927?text=${waText}`, '_blank');
+    window.open(`https://wa.me/5511926391931?text=${waText}`, '_blank');
 
-    const subject = encodeURIComponent('Solicitação de diagnóstico — ' + empresa);
+    const subject = encodeURIComponent('Solicitação de orçamento: ' + empresa);
     const body = encodeURIComponent(`Nome: ${nome}\nEmpresa: ${empresa}\nE-mail: ${email}\n\n${msg}`);
     setTimeout(() => {
       window.location.href = `mailto:contato@hochburg.com.br?subject=${subject}&body=${body}`;

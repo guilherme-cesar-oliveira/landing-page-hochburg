@@ -1,0 +1,45 @@
+# Hochburg
+
+> Estúdio de criação de sites de alta conversão para a era da IA. Sites institucionais, landing pages e lojas virtuais rápidos (Google PageSpeed 90%+), seguros e prontos para serem lidos por buscadores e por modelos de linguagem. Um ano de suporte incluso em todo projeto.
+
+A Hochburg não é só mais uma agência de site. O foco é presença na era da IA: fazer o negócio do cliente ser encontrável, citável e confiável para o Google AI Overviews (Gemini), o ChatGPT, o Perplexity e o Copilot, que hoje respondem no lugar da lista de links. A Hochburg nasceu em segurança ofensiva (testes de intrusão) e migrou para a construção de sites, trazendo a mesma preocupação com brechas para o desenvolvimento web. O discurso da marca é direto: site lento, WordPress inchado e código feito no improviso ("vibe coding") custam venda, ranqueamento e reputação.
+
+## Por que não é "só mais uma agência"
+
+- Todo site sai com `llm.txt`, `robots.txt` e dados estruturados (schema.org), o pacote que os modelos de IA usam como fonte. Agência comum entrega só o visual.
+- Conteúdo escrito em blocos que a IA consegue extrair e citar (pergunta e resposta objetiva, dado, negócio identificado), não texto de marketing genérico.
+- Acompanhamento de como o negócio aparece no resumo de IA do Google, no ChatGPT e no Perplexity, com ajuste do que os modelos leem.
+- PageSpeed 90%+ real: o robô de IA tem tempo limitado por site; site lento é rastreado pela metade.
+- Eventos preparados para medir o tráfego que chega por resposta de IA (chatgpt.com, perplexity.ai, gemini), separado da busca tradicional.
+- Base de segurança: o robô que rastreia o site não encontra formulário aberto nem dado de cliente exposto.
+
+## Produtos e preços
+
+- **Site institucional**: múltiplas páginas, estrutura para SEO e conversão. A partir de R$1.200.
+- **Landing page de alta conversão**: página única para campanhas de tráfego pago, com eventos de conversão configurados. A partir de R$1.200.
+- **Loja virtual própria**: e-commerce de verdade, com carrinho e checkout (não é catálogo de produtos). A partir de R$2.500, com 1 ano de suporte grátis.
+
+## O que vem em todo site (padrão Hochburg)
+
+- Google PageSpeed 90%+ (mobile e desktop) como requisito mínimo de entrega.
+- `robots.txt` e `llm.txt` configurados, além de dados estruturados (schema.org).
+- Eventos e métricas personalizados prontos para conectar a: Google Analytics (GA4), Google Search Console, Google Meu Negócio, Google Ads, Meta/Facebook Ads e TikTok Ads.
+- Segurança desde a origem: sem CMS inchado, sem plugin abandonado, sem formulário ou painel exposto.
+- Infraestrutura da nova era: a Hochburg é parceira Railway, com hospedagem segura e escalável (não em servidor compartilhado do tipo Hostinger ou HostGator). O cliente não lida com hospedagem nem detalhe técnico.
+- 1 ano de suporte incluso: além de manutenção, pequenas alterações e atualizações também estão cobertas nesse período.
+
+## Serviços opcionais (sob demanda)
+
+- Automação de IA no WhatsApp (atendimento e qualificação de leads).
+- Gestão de tráfego pago no Google e na Meta.
+
+## Parceria
+
+Origenow (https://origenow.com.br) é a parceira da Hochburg em inteligência para e-commerce e operações de alto nível: previsão de demanda, automação de operação e inteligência de dados para lojas que precisam escalar.
+
+## Contato
+
+- Site: https://hochburg.com.br/
+- E-mail: contato@hochburg.com.br
+- Telefone / WhatsApp: +55 11 92639-1931
+- Endereço: Av. Brigadeiro Faria Lima, 1811, Jardim Paulistano, São Paulo, SP, 01452-001, Brasil
