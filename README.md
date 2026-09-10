@@ -3,8 +3,8 @@
 Landing page de página única da **Hochburg**. Não é só mais uma agência de site: o foco é
 presença na era da IA — sites institucionais, landing pages e lojas virtuais rápidos
 (PageSpeed 90%+), seguros e prontos para serem lidos e citados por Google AI Overviews
-(Gemini), ChatGPT e Perplexity. Preços a partir de R$1.200 (R$2.500 para lojas virtuais),
-com 1 ano de suporte.
+(Gemini), ChatGPT e Perplexity. Landing pages a partir de R$750, sites institucionais a
+partir de R$1.200 e lojas virtuais a partir de R$2.500, todos com 1 ano de suporte.
 
 Seções: Abordagem · Problema · Produtos · Padrão Hochburg · Busca com IA · Método ·
 Segurança · Contato. Inclui parceria com a Origenow, links sociais (Instagram, Facebook,
