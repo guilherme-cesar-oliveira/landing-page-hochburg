@@ -9,6 +9,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-TCHLQVLB');</script>
 <!-- End Google Tag Manager -->
 
+<!-- Google tag (gtag.js) — Google Ads + GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QHNDJW0V2C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // page_view fica a cargo do disparo manual (engajamento real), ver <script> no fim do <body>
+  gtag('config', 'G-QHNDJW0V2C', { send_page_view: false });
+  gtag('config', 'AW-18445228237');
+</script>
+<!-- End Google tag (gtag.js) -->
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -20,7 +32,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1585497672474777');
-fbq('track', 'PageView');
+// 'PageView' é disparado manualmente após confirmar engajamento real, ver <script> no fim do <body>
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
@@ -1231,6 +1243,106 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
+  // ---------------------------------------------------------------
+  // Rastreamento de eventos reais: detecta bot/crawler/IA antes de
+  // disparar qualquer evento para GTM (dataLayer), GA4/Ads (gtag) e
+  // Meta Pixel (fbq). Nada é enviado para automação/crawler.
+  // ---------------------------------------------------------------
+  (function () {
+    const UA = navigator.userAgent || '';
+    const BOT_UA_RE = new RegExp([
+      'bot', 'crawl', 'spider', 'slurp', 'facebookexternalhit', 'whatsapp',
+      'telegrambot', 'discordbot', 'slackbot', 'redditbot', 'linkedinbot',
+      'embedly', 'outbrain', 'quora link preview', 'w3c_validator',
+      'gptbot', 'chatgpt', 'oai-searchbot', 'claudebot', 'claude-web',
+      'anthropic', 'perplexitybot', 'google-extended', 'applebot',
+      'bytespider', 'ccbot', 'cohere', 'diffbot', 'youbot', 'amazonbot',
+      'meta-externalagent', 'bingpreview', 'duckduckbot', 'yandexbot',
+      'baiduspider', 'semrushbot', 'ahrefsbot', 'mj12bot', 'dotbot',
+      'petalbot', 'seznambot', 'ia_archiver', 'archive\\.org',
+      'headlesschrome', 'phantomjs', 'selenium', 'puppeteer', 'playwright',
+      'lighthouse', 'pagespeed', 'gtmetrix', 'pingdom', 'uptimerobot',
+      'statuscake', 'curl/', 'wget', 'python-requests', 'python-urllib',
+      'go-http-client', 'okhttp', 'axios/', 'node-fetch', 'postmanruntime',
+      'insomnia', 'scrapy', 'httrack', 'libwww-perl', 'apache-httpclient'
+    ].join('|'), 'i');
+
+    let hadRealInteraction = false;
+    const markInteraction = () => { hadRealInteraction = true; };
+    ['pointerdown', 'pointermove', 'touchstart', 'keydown', 'mousemove', 'wheel']
+      .forEach(evt => window.addEventListener(evt, markInteraction, { once: true, passive: true }));
+
+    function isLikelyBot() {
+      if (BOT_UA_RE.test(UA)) return true;
+      if (navigator.webdriver === true) return true;
+      if (typeof screen !== 'undefined' && (screen.width === 0 || screen.height === 0)) return true;
+      if (Array.isArray(navigator.languages) && navigator.languages.length === 0) return true;
+      return false;
+    }
+
+    // exige que já tenha havido algum sinal de interação humana
+    // (mouse, toque, teclado ou scroll) além de não bater com um bot
+    window.HB_isHuman = function () {
+      return !isLikelyBot() && hadRealInteraction;
+    };
+
+    let pageViewSent = false;
+    function sendEngagedPageView() {
+      if (pageViewSent || !window.HB_isHuman()) return;
+      pageViewSent = true;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'engaged_page_view', page_location: location.href, page_path: location.pathname });
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_view', { page_location: location.href, page_path: location.pathname, page_title: document.title });
+      }
+      if (typeof fbq === 'function') {
+        fbq('track', 'PageView');
+      }
+    }
+    function onScrollCheck() {
+      hadRealInteraction = true;
+      if ((window.scrollY || window.pageYOffset || 0) > 60) {
+        window.removeEventListener('scroll', onScrollCheck);
+        sendEngagedPageView();
+      }
+    }
+    window.addEventListener('scroll', onScrollCheck, { passive: true });
+
+    window.HB_trackWhatsAppClick = function (source) {
+      if (!window.HB_isHuman()) return;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'whatsapp_click', method: source });
+      if (typeof gtag === 'function') {
+        gtag('event', 'whatsapp_click', { method: source });
+      }
+      if (typeof fbq === 'function') {
+        fbq('track', 'Contact', { content_name: 'whatsapp_' + source });
+      }
+    };
+
+    window.HB_trackFormSubmit = function () {
+      if (!window.HB_isHuman()) return;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'form_submit_whatsapp' });
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', { method: 'whatsapp_form' });
+      }
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: 'orcamento_whatsapp_form' });
+      }
+    };
+  })();
+
+  // clique em qualquer link de WhatsApp (botão flutuante, contato e menu mobile)
+  document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+    a.addEventListener('click', () => {
+      const source = a.id === 'whatsappFab' ? 'floating_button'
+        : a.closest('.mobile-nav') ? 'mobile_menu'
+        : 'contact_section';
+      window.HB_trackWhatsAppClick(source);
+    });
+  });
+
   // mobile nav toggle (overlay lives outside header to avoid the
   // backdrop-filter containing-block trap for position:fixed children)
   const navToggle = document.getElementById('navToggle');
@@ -1282,11 +1394,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => reveal.observe(el));
 
-  // contact form -> opens WhatsApp with the message pre-filled, and
-  // also falls back to a pre-filled e-mail via mailto
+  // contact form -> valida os campos, abre o WhatsApp com a mensagem
+  // pré-preenchida e também cai para um e-mail pré-preenchido via mailto
   document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();
-    const nome = this.nome.value, empresa = this.empresa.value, email = this.email.value, msg = this.mensagem.value;
+    const nome = this.nome.value.trim(), empresa = this.empresa.value.trim(),
+          email = this.email.value.trim(), msg = this.mensagem.value.trim();
+
+    // valida se todos os campos foram preenchidos antes de seguir
+    if (!this.checkValidity() || !nome || !empresa || !email || !msg) {
+      const fields = [['nome', nome], ['empresa', empresa], ['email', email], ['mensagem', msg]];
+      const firstEmpty = fields.find(([, val]) => !val);
+      if (firstEmpty) this[firstEmpty[0]].focus();
+      this.reportValidity();
+      return;
+    }
 
     const waText = encodeURIComponent(
       `Olá! Meu nome é ${nome}, da empresa ${empresa} (${email}).\n\n${msg}`
@@ -1298,6 +1420,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     setTimeout(() => {
       window.location.href = `mailto:contato@hochburg.com.br?subject=${subject}&body=${body}`;
     }, 250);
+
+    window.HB_trackFormSubmit();
   });
 </script>
 </body>
