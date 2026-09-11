@@ -329,17 +329,24 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   }
   @keyframes scan{0%{top:-120px;}100%{top:100%;}}
 
-  /* ---------- hero: globo decorativo lateral ---------- */
-  .hero-globe{
-    position:absolute;top:6%;right:-8%;bottom:-6%;
-    width:min(620px,46vw);
-    z-index:1;pointer-events:none;opacity:.92;
+  /* ---------- hero: layout em 2 colunas (texto + visual) ---------- */
+  .hero-grid{
+    display:grid;grid-template-columns:1fr min(440px,38%);
+    align-items:center;gap:24px;
   }
-  .hero-globe svg{width:100%;height:100%;display:block;}
+  .hero-col-visual{
+    display:flex;align-items:center;justify-content:center;
+    min-height:380px;
+  }
+  .hero-globe{width:100%;pointer-events:none;opacity:.95;}
+  .hero-globe svg{width:100%;height:auto;display:block;}
   .hg-orbit{transform-origin:360px 300px;animation:hgOrbit 70s linear infinite;}
   @keyframes hgOrbit{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
   @media (prefers-reduced-motion:reduce){.hg-orbit{animation:none;}}
-  @media (max-width:980px){.hero-globe{display:none;}}
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-col-visual{display:none;}
+  }
 
   .hero .wrap{position:relative;z-index:2;}
   .hero-logo{width:min(360px,60vw);margin-bottom:44px;color:var(--paper);}
@@ -707,85 +714,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero" id="inicio">
   <div class="hero-grid-bg"></div>
   <div class="hero-scanline"></div>
-  <div class="hero-globe" aria-hidden="true">
-    <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#c2483c" stop-opacity=".55"/>
-          <stop offset="55%" stop-color="#a53329" stop-opacity=".16"/>
-          <stop offset="100%" stop-color="#a53329" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#ffb199" stop-opacity=".9"/>
-          <stop offset="100%" stop-color="#ffb199" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-
-      <circle cx="360" cy="300" r="260" fill="url(#globeGlow)"/>
-
-      <g stroke="rgba(242,242,243,.28)" stroke-width="1.4" fill="none">
-        <circle cx="360" cy="300" r="190"/>
-        <ellipse cx="360" cy="300" rx="190" ry="62"/>
-        <ellipse cx="360" cy="300" rx="190" ry="128"/>
-        <ellipse cx="360" cy="300" rx="62" ry="190"/>
-        <ellipse cx="360" cy="300" rx="128" ry="190"/>
-        <line x1="170" y1="300" x2="550" y2="300"/>
-      </g>
-
-      <g class="hg-orbit">
-        <g stroke="#c2483c" stroke-width="1" stroke-opacity=".4" fill="none">
-          <line x1="260" y1="180" x2="360" y2="140"/>
-          <line x1="360" y1="140" x2="460" y2="190"/>
-          <line x1="230" y1="260" x2="260" y2="180"/>
-          <line x1="480" y1="260" x2="460" y2="190"/>
-          <line x1="200" y1="330" x2="230" y2="260"/>
-          <line x1="520" y1="330" x2="480" y2="260"/>
-          <line x1="240" y1="420" x2="200" y2="330"/>
-          <line x1="480" y1="420" x2="520" y2="330"/>
-          <line x1="330" y1="460" x2="240" y2="420"/>
-          <line x1="390" y1="460" x2="480" y2="420"/>
-          <line x1="330" y1="460" x2="390" y2="460"/>
-          <line x1="360" y1="140" x2="330" y2="70"/>
-          <line x1="590" y1="240" x2="480" y2="260"/>
-        </g>
-        <g fill="#f2f2f3">
-          <circle cx="360" cy="140" r="4"/>
-          <circle cx="260" cy="180" r="3"/>
-          <circle cx="460" cy="190" r="3.5"/>
-          <circle cx="230" cy="260" r="3"/>
-          <circle cx="480" cy="260" r="4"/>
-          <circle cx="200" cy="330" r="3.5"/>
-          <circle cx="520" cy="330" r="3"/>
-          <circle cx="240" cy="420" r="3"/>
-          <circle cx="480" cy="420" r="3.5"/>
-          <circle cx="330" cy="460" r="3"/>
-          <circle cx="390" cy="460" r="4"/>
-          <circle cx="330" cy="70" r="2.5"/>
-          <circle cx="590" cy="240" r="3"/>
-        </g>
-        <g fill="url(#nodeGlow)">
-          <circle cx="360" cy="140" r="14"/>
-          <circle cx="480" cy="260" r="12"/>
-          <circle cx="200" cy="330" r="14"/>
-          <circle cx="390" cy="460" r="12"/>
-        </g>
-      </g>
-    </svg>
-  </div>
   <div class="wrap">
-    <div class="hero-badge-row reveal">
-      <span class="hero-badge">Sites institucionais</span>
-      <span class="hero-badge">Landing Pages</span>
-      <span class="hero-badge">Lojas Virtuais</span>
-    </div>
-    <h1 class="reveal">Seu site foi feito para 2015. Seus clientes (e as IAs) já vivem em 2026.</h1>
-    <p class="hero-sub reveal">Site lento, WordPress inchado e brecha de segurança não são detalhe técnico. É venda que não acontece e marca que perde credibilidade. A Hochburg reconstrói tudo do zero, rápido, blindado e pronto para ser lido por gente e por inteligência artificial.</p>
-    <div class="hero-ctas reveal">
-      <a href="#contato" class="btn btn-primary">
-        Solicitar orçamento
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a href="#produtos" class="btn btn-outline">Ver o que entregamos</a>
+    <div class="hero-grid">
+      <div class="hero-col-main">
+        <div class="hero-badge-row reveal">
+          <span class="hero-badge">Sites institucionais</span>
+          <span class="hero-badge">Landing Pages</span>
+          <span class="hero-badge">Lojas Virtuais</span>
+        </div>
+        <h1 class="reveal">Seu site foi feito para 2015. Seus clientes (e as IAs) já vivem em 2026.</h1>
+        <p class="hero-sub reveal">Site lento, WordPress inchado e brecha de segurança não são detalhe técnico. É venda que não acontece e marca que perde credibilidade. A Hochburg reconstrói tudo do zero, rápido, blindado e pronto para ser lido por gente e por inteligência artificial.</p>
+        <div class="hero-ctas reveal">
+          <a href="#contato" class="btn btn-primary">
+            Solicitar orçamento
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#produtos" class="btn btn-outline">Ver o que entregamos</a>
+        </div>
+      </div>
+
+      <div class="hero-col-visual">
+        <div class="hero-globe" aria-hidden="true">
+          <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#c2483c" stop-opacity=".55"/>
+                <stop offset="55%" stop-color="#a53329" stop-opacity=".16"/>
+                <stop offset="100%" stop-color="#a53329" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffb199" stop-opacity=".9"/>
+                <stop offset="100%" stop-color="#ffb199" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <circle cx="360" cy="300" r="260" fill="url(#globeGlow)"/>
+
+            <g stroke="rgba(242,242,243,.28)" stroke-width="1.4" fill="none">
+              <circle cx="360" cy="300" r="190"/>
+              <ellipse cx="360" cy="300" rx="190" ry="62"/>
+              <ellipse cx="360" cy="300" rx="190" ry="128"/>
+              <ellipse cx="360" cy="300" rx="62" ry="190"/>
+              <ellipse cx="360" cy="300" rx="128" ry="190"/>
+              <line x1="170" y1="300" x2="550" y2="300"/>
+            </g>
+
+            <g class="hg-orbit">
+              <g stroke="#c2483c" stroke-width="1" stroke-opacity=".4" fill="none">
+                <line x1="260" y1="180" x2="360" y2="140"/>
+                <line x1="360" y1="140" x2="460" y2="190"/>
+                <line x1="230" y1="260" x2="260" y2="180"/>
+                <line x1="480" y1="260" x2="460" y2="190"/>
+                <line x1="200" y1="330" x2="230" y2="260"/>
+                <line x1="520" y1="330" x2="480" y2="260"/>
+                <line x1="240" y1="420" x2="200" y2="330"/>
+                <line x1="480" y1="420" x2="520" y2="330"/>
+                <line x1="330" y1="460" x2="240" y2="420"/>
+                <line x1="390" y1="460" x2="480" y2="420"/>
+                <line x1="330" y1="460" x2="390" y2="460"/>
+                <line x1="360" y1="140" x2="330" y2="70"/>
+                <line x1="590" y1="240" x2="480" y2="260"/>
+              </g>
+              <g fill="#f2f2f3">
+                <circle cx="360" cy="140" r="4"/>
+                <circle cx="260" cy="180" r="3"/>
+                <circle cx="460" cy="190" r="3.5"/>
+                <circle cx="230" cy="260" r="3"/>
+                <circle cx="480" cy="260" r="4"/>
+                <circle cx="200" cy="330" r="3.5"/>
+                <circle cx="520" cy="330" r="3"/>
+                <circle cx="240" cy="420" r="3"/>
+                <circle cx="480" cy="420" r="3.5"/>
+                <circle cx="330" cy="460" r="3"/>
+                <circle cx="390" cy="460" r="4"/>
+                <circle cx="330" cy="70" r="2.5"/>
+                <circle cx="590" cy="240" r="3"/>
+              </g>
+              <g fill="url(#nodeGlow)">
+                <circle cx="360" cy="140" r="14"/>
+                <circle cx="480" cy="260" r="12"/>
+                <circle cx="200" cy="330" r="14"/>
+                <circle cx="390" cy="460" r="12"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
     </div>
 
     <div class="hero-stats reveal">
