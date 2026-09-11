@@ -1148,7 +1148,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Enviar solicitação
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
-        <p class="form-note">Abre o WhatsApp e o seu cliente de e-mail, ambos com a mensagem pré-preenchida.</p>
+        <p class="form-note">Abre o WhatsApp com a mensagem pré-preenchida.</p>
       </form>
     </div>
   </div>
@@ -1399,8 +1399,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => reveal.observe(el));
 
-  // contact form -> valida os campos, abre o WhatsApp com a mensagem
-  // pré-preenchida e também cai para um e-mail pré-preenchido via mailto
+  // contact form -> valida os campos e abre só o WhatsApp, com a
+  // mensagem pré-preenchida e personalizada
   document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();
     const nome = this.nome.value.trim(), empresa = this.empresa.value.trim(),
@@ -1416,15 +1416,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     const waText = encodeURIComponent(
-      `Olá! Meu nome é ${nome}, da empresa ${empresa} (${email}).\n\n${msg}`
+      `Olá! Vim pelo site da Hochburg e gostaria de saber mais.\n\n` +
+      `Nome: ${nome}\nEmpresa: ${empresa}\nE-mail: ${email}\n\n${msg}`
     );
     window.open(`https://wa.me/5511926391931?text=${waText}`, '_blank');
-
-    const subject = encodeURIComponent('Solicitação de orçamento: ' + empresa);
-    const body = encodeURIComponent(`Nome: ${nome}\nEmpresa: ${empresa}\nE-mail: ${email}\n\n${msg}`);
-    setTimeout(() => {
-      window.location.href = `mailto:contato@hochburg.com.br?subject=${subject}&body=${body}`;
-    }, 250);
 
     window.HB_trackFormSubmit();
   });
