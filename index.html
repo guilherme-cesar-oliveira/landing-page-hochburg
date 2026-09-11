@@ -1286,6 +1286,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return !isLikelyBot() && hadRealInteraction;
     };
 
+    // rótulos de conversão do Google Ads (conta AW-18445228237)
+    const AW_CONVERSION_CONTATO = 'AW-18445228237/C-zECIOVsvQcEM2xr9tE';
+    const AW_CONVERSION_PAGE_VIEW = 'AW-18445228237/1ju4CIaVsvQcEM2xr9tE';
+    function fireAdsConversion(sendTo, extra) {
+      if (typeof gtag !== 'function') return;
+      gtag('event', 'conversion', Object.assign({ send_to: sendTo }, extra || {}));
+    }
+
     let pageViewSent = false;
     function sendEngagedPageView() {
       if (pageViewSent || !window.HB_isHuman()) return;
@@ -1295,6 +1303,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (typeof gtag === 'function') {
         gtag('event', 'page_view', { page_location: location.href, page_path: location.pathname, page_title: document.title });
       }
+      fireAdsConversion(AW_CONVERSION_PAGE_VIEW, { value: 1.0, currency: 'BRL' });
       if (typeof fbq === 'function') {
         fbq('track', 'PageView');
       }
@@ -1315,6 +1324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (typeof gtag === 'function') {
         gtag('event', 'whatsapp_click', { method: source });
       }
+      fireAdsConversion(AW_CONVERSION_CONTATO);
       if (typeof fbq === 'function') {
         fbq('track', 'Contact', { content_name: 'whatsapp_' + source });
       }
@@ -1327,6 +1337,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (typeof gtag === 'function') {
         gtag('event', 'generate_lead', { method: 'whatsapp_form' });
       }
+      fireAdsConversion(AW_CONVERSION_CONTATO);
       if (typeof fbq === 'function') {
         fbq('track', 'Lead', { content_name: 'orcamento_whatsapp_form' });
       }
