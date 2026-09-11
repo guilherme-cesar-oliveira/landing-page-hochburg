@@ -7,9 +7,9 @@ presença na era da IA — sites institucionais, landing pages e lojas virtuais 
 partir de R$1.200 e lojas virtuais a partir de R$2.500, todos com 1 ano de suporte.
 
 Seções: Abordagem · Problema · Produtos · Padrão Hochburg · Busca com IA · Método ·
-Segurança · Contato. Inclui parceria com a Origenow, links sociais (Instagram, Facebook,
-WhatsApp, TikTok), botão flutuante de WhatsApp e formulário de contato que abre
-WhatsApp + e-mail pré-preenchidos.
+Segurança · Contato. Inclui parceria com a Origenow, links sociais no rodapé (Facebook e
+WhatsApp — Instagram e TikTok ainda não existem, por isso não aparecem), botão flutuante
+de WhatsApp e formulário de contato que abre WhatsApp + e-mail pré-preenchidos.
 
 ## Arquivos
 
@@ -18,9 +18,6 @@ WhatsApp + e-mail pré-preenchidos.
 - `llm.txt` — resumo da Hochburg (posicionamento, produtos, preços, parceria, trabalhos, contato) para modelos de IA.
 - `sitemap.xml` — mapa do site (home).
 - `CNAME` — domínio customizado `hochburg.com.br`.
-
-Links sociais (Instagram, Facebook, TikTok) no rodapé estão com `href` provisório
-(`https://instagram.com/` etc.) — trocar pelos perfis reais da Hochburg.
 
 ## Publicar no GitHub Pages
 
