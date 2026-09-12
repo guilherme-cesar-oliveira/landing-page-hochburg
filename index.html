@@ -112,10 +112,10 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     --muted-2:#9a9b9c;
     --line:#d7d7d8;
     --line-soft:#e2e2e3;
-    --accent:#39ff6a;
-    --accent-2:#22d65c;
+    --accent:#beef7d;
+    --accent-2:#a6e85f;
     --accent-ink:#08240f;
-    --accent-onlight:#1f9c48; /* verde neon é ilegível em fundo branco/quase-branco; usar esta variante escura em texto/ícone sobre --paper, --paper-alt e --card */
+    --accent-onlight:#4f7228; /* o accent claro é ilegível em fundo branco/quase-branco; usar esta variante escura em texto/ícone sobre --paper, --paper-alt e --card */
     --good:#3f7a4d;
     --paper-on-dark:#f2f2f3;
     --line-on-dark:rgba(242,242,243,.14);
@@ -166,7 +166,7 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   h3{font-size:19px;letter-spacing:-.01em;}
   p{color:var(--muted);}
   section.dark p{color:var(--muted-on-dark);}
-  code{font-family:var(--ff-mono);font-size:.88em;background:rgba(57,255,106,.12);color:var(--accent-onlight);padding:1px 6px;border-radius:6px;}
+  code{font-family:var(--ff-mono);font-size:.88em;background:rgba(190,239,125,.18);color:var(--accent-onlight);padding:1px 6px;border-radius:6px;}
   section.dark code{background:rgba(242,242,243,.1);color:var(--paper);}
 
   .section-head{max-width:640px;margin-bottom:56px;}
@@ -317,22 +317,10 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     filter:hue-rotate(100deg) saturate(1.25) brightness(.85);
     opacity:.6;
   }
-  .hero-grid-bg{
+  .hero-shade{
     position:absolute;inset:0;pointer-events:none;
-    background-image:
-      linear-gradient(var(--line-on-dark) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line-on-dark) 1px, transparent 1px);
-    background-size:64px 64px;
-    mask-image:radial-gradient(ellipse 70% 60% at 60% 20%, black 0%, transparent 75%);
-    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 20%, black 0%, transparent 75%);
+    background:linear-gradient(90deg, rgba(10,11,12,.9) 0%, rgba(10,11,12,.62) 38%, rgba(10,11,12,0) 68%);
   }
-  .hero-scanline{
-    position:absolute;left:0;right:0;height:120px;
-    background:linear-gradient(180deg, transparent, rgba(57,255,106,.16), transparent);
-    animation:scan 7s linear infinite;
-    pointer-events:none;
-  }
-  @keyframes scan{0%{top:-120px;}100%{top:100%;}}
 
   .hero .wrap{position:relative;z-index:2;}
   .hero-logo{width:min(360px,60vw);margin-bottom:44px;color:var(--paper);}
@@ -348,6 +336,7 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     max-width:16ch;
     margin-bottom:24px;
   }
+  .hero h1 .hl{color:var(--accent);}
   .hero-sub{font-size:18px;max-width:52ch;color:var(--muted-on-dark);margin-bottom:40px;}
   .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:64px;}
 
@@ -761,15 +750,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ================= HERO ================= -->
 <section class="hero" id="inicio">
   <div class="hero-bg-photo"></div>
-  <div class="hero-grid-bg"></div>
-  <div class="hero-scanline"></div>
+  <div class="hero-shade"></div>
   <div class="wrap">
     <div class="hero-badge-row reveal">
       <span class="hero-badge">Sites institucionais</span>
       <span class="hero-badge">Landing Pages</span>
       <span class="hero-badge">Lojas Virtuais</span>
     </div>
-    <h1 class="reveal">Seu site foi feito para 2015. Seus clientes (e as IAs) já vivem em 2026.</h1>
+    <h1 class="reveal">Seu site foi feito para 2015. Seus clientes <span class="hl">(e as IAs)</span> já vivem em 2026.</h1>
     <p class="hero-sub reveal">Site lento, WordPress inchado e brecha de segurança não são detalhe técnico. É venda que não acontece e marca que perde credibilidade. A Hochburg reconstrói tudo do zero, rápido, blindado e pronto para ser lido por gente e por inteligência artificial.</p>
     <div class="hero-ctas reveal">
       <a href="#contato" class="btn btn-primary">
