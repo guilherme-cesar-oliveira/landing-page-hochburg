@@ -313,13 +313,14 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   }
   .hero-bg-photo{
     position:absolute;inset:0;pointer-events:none;
-    background:url('hero-bg.webp') center 35%/cover no-repeat;
-    filter:hue-rotate(100deg) saturate(1.25) brightness(.85);
-    opacity:.6;
+    background:url('hero-banner.png') right center/cover no-repeat;
   }
   .hero-shade{
     position:absolute;inset:0;pointer-events:none;
     background:linear-gradient(90deg, rgba(10,11,12,.9) 0%, rgba(10,11,12,.62) 38%, rgba(10,11,12,0) 68%);
+  }
+  @media (max-width:980px){
+    .hero-bg-photo{display:none;}
   }
 
   .hero .wrap{position:relative;z-index:2;}
