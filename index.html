@@ -148,16 +148,16 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     font-family:var(--ff-mono);
     font-size:12px;
     font-weight:600;
-    letter-spacing:.1em;
+    letter-spacing:.14em;
     text-transform:uppercase;
-    color:var(--accent-ink);
-    background:var(--accent);
-    display:inline-flex;align-items:center;gap:8px;
-    padding:6px 14px;border-radius:999px;
+    color:var(--accent);
+    display:flex;align-items:center;gap:10px;
     margin-bottom:18px;
   }
-  .eyebrow .num{color:var(--accent-ink);opacity:.6;}
-  .eyebrow .dot{color:var(--accent-ink);opacity:.4;}
+  .eyebrow .num{color:var(--muted);}
+  .eyebrow .dot{color:var(--line);}
+  section.dark .eyebrow .num{color:var(--muted-on-dark);}
+  section.dark .eyebrow .dot{color:var(--line-on-dark);}
 
   h1,h2,h3,h4{font-weight:800;letter-spacing:-.02em;line-height:1.08;}
   h2{font-size:clamp(30px,4vw,46px);}
@@ -399,10 +399,8 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   .service-card h3{margin-bottom:10px;}
   .service-card p{font-size:14px;flex-grow:1;}
   .service-card .price{
-    font-family:var(--ff-mono);font-size:12.5px;font-weight:600;letter-spacing:.02em;
-    color:var(--accent-ink);background:var(--accent);
-    margin-top:16px;padding:6px 12px;border-radius:999px;
-    display:inline-flex;align-self:flex-start;
+    font-family:var(--ff-mono);font-size:12.5px;font-weight:600;letter-spacing:.03em;
+    color:var(--accent);margin-top:16px;
   }
 
   /* ---------- benchmark bars (pagespeed) ---------- */
@@ -458,11 +456,7 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     padding:52px 48px;display:flex;gap:44px;align-items:center;justify-content:space-between;flex-wrap:wrap;
   }
   .partner-box .p-text{flex:1 1 440px;}
-  .partner-box .p-eyebrow{
-    font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--accent-ink);background:var(--accent);
-    display:inline-flex;padding:6px 14px;border-radius:999px;margin-bottom:14px;
-  }
+  .partner-box .p-eyebrow{font-family:var(--ff-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
   .partner-box h2{font-size:clamp(24px,3vw,32px);color:var(--paper);margin-bottom:14px;max-width:22ch;}
   .partner-box p{color:var(--muted-on-dark);font-size:15px;max-width:56ch;}
   .partner-box .btn{flex-shrink:0;}
