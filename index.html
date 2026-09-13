@@ -540,11 +540,24 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   .conduct-grid .conduct-card h3{color:var(--ink);margin-bottom:8px;font-size:17px;}
   .conduct-grid .conduct-card p{color:var(--muted);font-size:14.5px;}
 
-  /* ---------- faq ---------- */
+  /* ---------- faq (sanfona) ---------- */
   .faq-list{border-top:1px solid var(--line);}
-  .faq-item{padding:26px 0;border-bottom:1px solid var(--line);}
-  .faq-item h3{color:var(--ink);font-size:17px;margin-bottom:10px;}
-  .faq-item p{color:var(--muted);font-size:14.5px;max-width:76ch;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:22px 0;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::marker{content:"";}
+  .faq-item h3{color:var(--ink);font-size:16.5px;font-weight:700;letter-spacing:-.01em;}
+  .faq-item summary::after{
+    content:"+";font-family:var(--ff-mono);font-size:20px;font-weight:400;line-height:1;
+    color:var(--muted-2);flex-shrink:0;transition:transform .2s ease;
+  }
+  .faq-item[open] summary::after{content:"−";}
+  .faq-item summary:hover h3{color:var(--accent-onlight);}
+  .faq-item p{color:var(--muted);font-size:14.5px;max-width:76ch;padding-bottom:24px;}
 
   /* ---------- certificações ---------- */
   .cert-table{border-top:1px solid var(--line);}
@@ -1288,50 +1301,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="faq-list reveal">
-      <div class="faq-item">
-        <h3>O que é uma landing page?</h3>
+      <details class="faq-item">
+        <summary><h3>O que é uma landing page?</h3></summary>
         <p>Uma página única, focada em uma ação só: vender uma oferta ou capturar um contato. Sem menu, sem link de saída, sem distração. Bons exemplos de landing page mostram a oferta e o botão de ação sem precisar rolar a tela. A Hochburg entrega landing page de alta conversão a partir de R$750, com os eventos de conversão já plugados no Google Ads, GA4 e Meta.</p>
-      </div>
-      <div class="faq-item">
-        <h3>O que são leads?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>O que são leads?</h3></summary>
         <p>Lead é o contato de quem demonstrou interesse real, deixou nome, telefone ou abriu o WhatsApp. É a etapa antes da venda. Uma landing page ou site bem construído existe pra transformar visita em lead, e é isso que medimos em cada projeto, sem depender de ferramentas externas como RD Station só pra saber se o site está funcionando.</p>
-      </div>
-      <div class="faq-item">
-        <h3>O que é um site (website)?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>O que é um site (website)?</h3></summary>
         <p>É qualquer conjunto de páginas na internet (também chamado de site da web), acessível por um domínio próprio. Os tipos mais comuns são site institucional (várias páginas, apresenta a empresa), landing page (uma página, uma campanha) e loja virtual (com carrinho e checkout). A Hochburg constrói os três, sempre com o mesmo padrão de velocidade e segurança.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Google Sites é uma boa opção pra ter um site profissional?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Google Sites é uma boa opção pra ter um site profissional?</h3></summary>
         <p>Google Sites, o site do Gmail, é uma ferramenta gratuita pra páginas simples, não pra representar uma marca que vende. Mesmo pelo celular, o editor não tem app dedicado nem controle real de performance, design responsivo ou estrutura pra SEO e conversão. O mesmo vale pra geradores de site por IA, como o Lovable: saem rápido, mas sem a base de segurança e velocidade que um negócio de verdade precisa. A Hochburg entrega isso com domínio próprio e PageSpeed 90%+ garantido.</p>
-      </div>
-      <div class="faq-item">
-        <h3>O que é UX?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>O que é UX?</h3></summary>
         <p>UX (user experience, experiência do usuário) é o quão fácil e rápido é usar o site: achar a informação, entender a oferta, preencher o formulário sem travar. Site com UX ruim afasta cliente mesmo com design bonito.</p>
-      </div>
-      <div class="faq-item">
-        <h3>O que é web design (design de site) e o que é layout?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>O que é web design (design de site) e o que é layout?</h3></summary>
         <p>Design, ou web design, é a parte visual: cor, tipografia, imagem. Layout web é a estrutura por trás, onde cada bloco fica na tela e como o olho chega até o botão de ação. Ferramentas como o Google Web Designer e templates prontos entregam o mesmo layout de site pra milhares de negócios diferentes; a Hochburg desenha o layout sob medida pro seu funil, sem parecer ideia de site copiada.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Quais os tipos de site que existem, e o que são bons exemplos de site?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Quais os tipos de site que existem, e o que são bons exemplos de site?</h3></summary>
         <p>Os principais tipos são institucional, landing page e loja virtual (veja a seção Produtos). Um bom exemplo de site não é o mais bonito: é o que faz a pessoa entender a oferta e agir rápido, com estrutura clara: início, prova social, produto ou serviço e contato.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Qual a estrutura ideal de um site institucional?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Qual a estrutura ideal de um site institucional?</h3></summary>
         <p>Hero com a promessa principal, seção sobre a empresa, produtos ou serviços, prova social (depoimento ou certificação) e contato com formulário e WhatsApp. Cada bloco responde a uma objeção antes de a pessoa fechar a aba, é essa estrutura que usamos em todo site institucional que entregamos.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Como saber se um site é pesado ou lento? Existe avaliador de sites?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Como saber se um site é pesado ou lento? Existe avaliador de sites?</h3></summary>
         <p>Site pesado é o que demora pra carregar imagem, script ou fonte. Cada segundo extra derruba conversão e posição no Google. O Google PageSpeed Insights é um avaliador de sites gratuito, dá nota de 0 a 100 pra velocidade em mobile e desktop. Na Hochburg, 90%+ nessa nota é o mínimo de entrega, não meta.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Vale a pena pagar por um site, ou uma ferramenta gratuita resolve?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Vale a pena pagar por um site, ou uma ferramenta gratuita resolve?</h3></summary>
         <p>Ferramenta gratuita resolve pra quem só precisa existir na internet. Site pago profissional resolve pra quem precisa vender: velocidade, segurança e métrica de conversão. A diferença de investimento costuma se pagar com o primeiro cliente que a versão gratuita deixaria escapar.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Meu site funciona bem no celular?</h3>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Meu site funciona bem no celular?</h3></summary>
         <p>A maior parte do tráfego de um site digital hoje vem do celular. Site mobile de verdade não é só encolher a versão de computador: botão precisa ser tocável, texto legível sem zoom, carregamento rápido mesmo em conexão fraca. Todo site da Hochburg é feito mobile-first, testado no celular antes do computador.</p>
-      </div>
+      </details>
     </div>
   </div>
 </section>
