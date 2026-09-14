@@ -431,6 +431,7 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   /* ---------- serviços ---------- */
   .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
   .service-card{
+    position:relative;
     background:var(--card);padding:34px 30px;min-height:200px;
     display:flex;flex-direction:column;
     transition:background .18s ease;
@@ -442,6 +443,32 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   .service-card .price{
     font-family:var(--ff-mono);font-size:12.5px;font-weight:600;letter-spacing:.03em;
     color:var(--accent-onlight);margin-top:16px;
+  }
+  .service-card .price-old{
+    font-family:var(--ff-mono);font-size:11.5px;font-weight:600;
+    color:var(--muted-2);text-decoration:line-through;margin-right:7px;
+  }
+  .service-card .price-new{color:var(--accent-onlight);}
+  .promo-flag{
+    position:absolute;top:16px;right:16px;
+    font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:.03em;
+    background:var(--accent);color:var(--accent-ink);
+    padding:4px 9px;border-radius:999px;
+  }
+
+  /* ---------- banner de promoção ---------- */
+  .promo-banner{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:var(--accent);color:var(--accent-ink);
+    border-radius:var(--radius);padding:16px 22px;margin-bottom:40px;
+    font-size:14.5px;font-weight:500;
+  }
+  .promo-banner .promo-tag{
+    font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    background:var(--accent-ink);color:var(--accent);padding:6px 12px;border-radius:999px;flex-shrink:0;
+  }
+  @media (max-width:560px){
+    .promo-banner{padding:14px 18px;font-size:13.5px;}
   }
 
   /* ---------- benchmark bars (pagespeed) ---------- */
@@ -981,18 +1008,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Preço aberto, escopo claro e um ano de suporte em todos. Automação e tráfego entram quando você quiser.</p>
     </div>
 
+    <div class="promo-banner reveal">
+      <span class="promo-tag">Promoção</span>
+      <span>Site institucional com <strong>25% OFF</strong> (de R$1.200 por R$900) e landing page de alta conversão com <strong>50% OFF</strong> (de R$750 por R$375).</span>
+    </div>
+
     <div class="services-grid reveal">
       <div class="service-card">
+        <span class="promo-flag">-25%</span>
         <span class="idx">01</span>
         <h3>Site institucional</h3>
         <p>Múltiplas páginas, estrutura pensada para SEO e para transformar visita em contato. Rápido e blindado desde a primeira linha.</p>
-        <span class="price">A partir de R$1.200</span>
+        <span class="price"><span class="price-old">R$1.200</span><span class="price-new">A partir de R$900</span></span>
       </div>
       <div class="service-card">
+        <span class="promo-flag">-50%</span>
         <span class="idx">02</span>
         <h3>Landing page de alta conversão</h3>
         <p>Página única, uma campanha, uma ação. Feita para o tráfego pago render de verdade, com os eventos de conversão já no lugar.</p>
-        <span class="price">A partir de R$750</span>
+        <span class="price"><span class="price-old">R$750</span><span class="price-new">A partir de R$375</span></span>
       </div>
       <div class="service-card">
         <span class="idx">03</span>
