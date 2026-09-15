@@ -684,7 +684,6 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   .contact-info-item .value{font-size:15.5px;color:var(--paper);font-weight:500;}
 
   form.contact-form{background:var(--card);border-radius:var(--radius);padding:40px;color:var(--ink);}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .field{margin-bottom:20px;}
   .field label{
     display:block;font-family:var(--ff-mono);font-size:11px;text-transform:uppercase;
@@ -754,7 +753,6 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     .cert-row{grid-template-columns:1fr 1fr;row-gap:8px;}
     .cert-row .app{grid-column:1 / -1;}
     .contact-layout{grid-template-columns:1fr;gap:56px;}
-    .form-row{grid-template-columns:1fr;}
     .partner-box{gap:28px;}
     .footer-top{flex-direction:column;}
     .footer-cols{gap:48px;}
@@ -1502,15 +1500,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <form class="contact-form reveal" id="contactForm">
-        <div class="form-row">
-          <div class="field">
-            <label for="fname">Nome</label>
-            <input type="text" id="fname" name="nome" required placeholder="Seu nome" autocomplete="name">
-          </div>
-          <div class="field">
-            <label for="femail">E-mail</label>
-            <input type="email" id="femail" name="email" required placeholder="voce@empresa.com.br" autocomplete="email">
-          </div>
+        <div class="field">
+          <label for="fname">Nome</label>
+          <input type="text" id="fname" name="nome" required placeholder="Seu nome" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="femail">E-mail</label>
+          <input type="email" id="femail" name="email" required placeholder="voce@empresa.com.br" autocomplete="email">
         </div>
         <div class="field">
           <label for="fphone">Celular</label>
@@ -1671,14 +1667,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       gtag('event', 'conversion', Object.assign({ send_to: sendTo }, extra || {}));
     }
 
+    // parâmetros de campanha (utm_*, gclid, fbclid) presentes na URL de chegada,
+    // usados para marcar de qual campanha veio cada evento (não para bloquear o disparo:
+    // o Google Ads e o Meta já fazem a atribuição real por conta própria via cookie
+    // (_gcl_aw/_gcl_dc e fbc/fbp), que sobrevive mesmo se a pessoa converter dias depois
+    // sem esses parâmetros na URL — filtrar aqui pela URL atual perderia essas conversões)
+    function getCampaignParams() {
+      const p = new URLSearchParams(location.search);
+      const out = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'].forEach(function (k) {
+        const v = p.get(k);
+        if (v) out[k] = v;
+      });
+      return out;
+    }
+    const campaignParams = getCampaignParams();
+    window.HB_campaignParams = campaignParams;
+    window.HB_campaignOrigin = function () {
+      if (campaignParams.utm_campaign) return campaignParams.utm_campaign;
+      if (campaignParams.gclid) return 'Google Ads';
+      if (campaignParams.fbclid) return 'Meta Ads';
+      if (campaignParams.utm_source) return campaignParams.utm_source;
+      return null;
+    };
+
     let pageViewSent = false;
     function sendEngagedPageView() {
       if (pageViewSent || !window.HB_isHuman()) return;
       pageViewSent = true;
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'engaged_page_view', page_location: location.href, page_path: location.pathname });
+      window.dataLayer.push(Object.assign({ event: 'engaged_page_view', page_location: location.href, page_path: location.pathname }, campaignParams));
       if (typeof gtag === 'function') {
-        gtag('event', 'page_view', { page_location: location.href, page_path: location.pathname, page_title: document.title });
+        gtag('event', 'page_view', Object.assign({ page_location: location.href, page_path: location.pathname, page_title: document.title }, campaignParams));
       }
       fireAdsConversion(AW_CONVERSION_PAGE_VIEW, { value: 1.0, currency: 'BRL' });
       if (typeof fbq === 'function') {
@@ -1697,9 +1717,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.HB_trackWhatsAppClick = function (source) {
       if (!window.HB_isHuman()) return;
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'whatsapp_click', method: source });
+      window.dataLayer.push(Object.assign({ event: 'whatsapp_click', method: source }, campaignParams));
       if (typeof gtag === 'function') {
-        gtag('event', 'whatsapp_click', { method: source });
+        gtag('event', 'whatsapp_click', Object.assign({ method: source }, campaignParams));
       }
       fireAdsConversion(AW_CONVERSION_CONTATO);
       if (typeof fbq === 'function') {
@@ -1710,10 +1730,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.HB_trackFormSubmit = function (userData) {
       if (!window.HB_isHuman()) return;
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'form_submit_whatsapp' });
+      window.dataLayer.push(Object.assign({ event: 'form_submit_whatsapp' }, campaignParams));
       if (typeof gtag === 'function') {
         if (userData && userData.google) gtag('set', 'user_data', userData.google);
-        gtag('event', 'generate_lead', { method: 'whatsapp_form' });
+        gtag('event', 'generate_lead', Object.assign({ method: 'whatsapp_form' }, campaignParams));
       }
       fireAdsConversion(AW_CONVERSION_LEAD);
       if (typeof fbq === 'function') {
@@ -1831,9 +1851,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return;
     }
 
+    const origem = typeof window.HB_campaignOrigin === 'function' ? window.HB_campaignOrigin() : null;
     const waText = encodeURIComponent(
       `Olá! Vim pelo site da Hochburg e gostaria de saber mais.\n\n` +
-      `Nome: ${nome}\nE-mail: ${email}\nCelular: ${celular}`
+      `Nome: ${nome}\nE-mail: ${email}\nCelular: ${celular}` +
+      (origem ? `\n\n(Origem: ${origem})` : '')
     );
     window.open(`https://wa.me/5511926391931?text=${waText}`, '_blank');
 
