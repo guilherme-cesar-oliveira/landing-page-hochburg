@@ -494,14 +494,21 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   .services-grid .service-card h3{color:var(--ink);margin-bottom:10px;}
   .services-grid .service-card p{color:var(--muted);font-size:14px;flex-grow:1;}
   .service-card .price{
-    font-family:var(--ff-mono);font-size:12.5px;font-weight:600;letter-spacing:.03em;
-    color:var(--accent-onlight);margin-top:16px;
+    font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.02em;
+    color:var(--accent-onlight);margin-top:20px;
+    display:flex;flex-direction:column;gap:4px;align-items:flex-start;
   }
   .service-card .price-old{
-    font-family:var(--ff-mono);font-size:11.5px;font-weight:600;
-    color:var(--muted-2);text-decoration:line-through;margin-right:7px;
+    font-family:var(--ff-mono);font-size:12.5px;font-weight:600;
+    color:var(--muted-2);text-decoration:line-through;margin-right:0;
   }
-  .service-card .price-new{color:var(--accent-onlight);}
+  .service-card .price-new{
+    color:var(--accent-onlight);font-size:22px;font-weight:800;letter-spacing:-.01em;
+  }
+  .service-card .price-lead{
+    font-family:var(--ff-mono);font-size:11.5px;font-weight:600;
+    color:var(--muted-2);text-transform:uppercase;letter-spacing:.04em;
+  }
   .promo-flag{
     position:absolute;top:16px;right:16px;
     font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:.03em;
@@ -813,7 +820,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
 
     <nav class="primary-nav" id="primaryNav">
-      <a href="#abordagem" data-nav>Abordagem</a>
       <a href="#problema" data-nav>Problema</a>
       <a href="#produtos" data-nav>Serviços/Preços</a>
       <a href="#padrao" data-nav>Padrão</a>
@@ -880,7 +886,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <nav class="mobile-nav-links">
-    <a href="#abordagem" data-mobile-nav>Abordagem</a>
     <a href="#problema" data-mobile-nav>Problema</a>
     <a href="#produtos" data-mobile-nav>Serviços/Preços</a>
     <a href="#padrao" data-mobile-nav>Padrão</a>
@@ -1101,7 +1106,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="idx">03</span>
         <h3>Loja virtual própria</h3>
         <p>Loja de verdade, com carrinho e checkout, não um catálogo de produtos. Sua, sem depender de marketplace. Operação e inteligência de dados com a parceira Origenow.</p>
-        <span class="price">A partir de R$2.500 · suporte 1 ano grátis</span>
+        <span class="price"><span class="price-lead">A partir de</span><span class="price-new">R$2.500</span><span class="price-lead">suporte 1 ano grátis</span></span>
       </div>
       <div class="service-card">
         <span class="idx">04</span>
@@ -1582,7 +1587,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="footer-cols">
         <div class="footer-col">
           <h4>Navegação</h4>
-          <a href="#abordagem">Abordagem</a>
           <a href="#problema">Problema</a>
           <a href="#produtos">Serviços/Preços</a>
           <a href="#padrao">Padrão</a>
