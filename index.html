@@ -1505,20 +1505,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="form-row">
           <div class="field">
             <label for="fname">Nome</label>
-            <input type="text" id="fname" name="nome" required placeholder="Seu nome">
+            <input type="text" id="fname" name="nome" required placeholder="Seu nome" autocomplete="name">
           </div>
           <div class="field">
-            <label for="fcompany">Empresa ou negócio</label>
-            <input type="text" id="fcompany" name="empresa" required placeholder="Nome do negócio">
+            <label for="femail">E-mail</label>
+            <input type="email" id="femail" name="email" required placeholder="voce@empresa.com.br" autocomplete="email">
           </div>
         </div>
         <div class="field">
-          <label for="femail">E-mail</label>
-          <input type="email" id="femail" name="email" required placeholder="voce@empresa.com.br">
-        </div>
-        <div class="field">
-          <label for="fmsg">Mensagem</label>
-          <textarea id="fmsg" name="mensagem" required placeholder="Conte qual é o seu site hoje, o endereço dele e o que precisa melhorar ou vender."></textarea>
+          <label for="fphone">Celular</label>
+          <input type="tel" id="fphone" name="celular" required placeholder="(11) 91234-5678" autocomplete="tel">
         </div>
         <button type="submit" class="btn btn-primary">
           Enviar solicitação
@@ -1666,8 +1662,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     };
 
     // rótulos de conversão do Google Ads (conta AW-18445228237)
-    const AW_CONVERSION_CONTATO = 'AW-18445228237/C-zECIOVsvQcEM2xr9tE';
+    const AW_CONVERSION_CONTATO = 'AW-18445228237/C-zECIOVsvQcEM2xr9tE'; // clique direto no botão do WhatsApp (sem dado do lead)
+    const AW_CONVERSION_LEAD = 'AW-18445228237/F9mICK-TlPkcEM2xr9tE'; // envio do formulário (com e-mail/telefone via Enhanced Conversions)
     const AW_CONVERSION_PAGE_VIEW = 'AW-18445228237/1ju4CIaVsvQcEM2xr9tE';
+    const META_PIXEL_ID = '1585497672474777';
     function fireAdsConversion(sendTo, extra) {
       if (typeof gtag !== 'function') return;
       gtag('event', 'conversion', Object.assign({ send_to: sendTo }, extra || {}));
@@ -1709,15 +1707,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     };
 
-    window.HB_trackFormSubmit = function () {
+    window.HB_trackFormSubmit = function (userData) {
       if (!window.HB_isHuman()) return;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'form_submit_whatsapp' });
       if (typeof gtag === 'function') {
+        if (userData && userData.google) gtag('set', 'user_data', userData.google);
         gtag('event', 'generate_lead', { method: 'whatsapp_form' });
       }
-      fireAdsConversion(AW_CONVERSION_CONTATO);
+      fireAdsConversion(AW_CONVERSION_LEAD);
       if (typeof fbq === 'function') {
+        if (userData && userData.meta) fbq('init', META_PIXEL_ID, userData.meta);
         fbq('track', 'Lead', { content_name: 'orcamento_whatsapp_form' });
       }
     };
@@ -1819,12 +1819,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // mensagem pré-preenchida e personalizada
   document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();
-    const nome = this.nome.value.trim(), empresa = this.empresa.value.trim(),
-          email = this.email.value.trim(), msg = this.mensagem.value.trim();
+    const nome = this.nome.value.trim(), email = this.email.value.trim(),
+          celular = this.celular.value.trim();
 
     // valida se todos os campos foram preenchidos antes de seguir
-    if (!this.checkValidity() || !nome || !empresa || !email || !msg) {
-      const fields = [['nome', nome], ['empresa', empresa], ['email', email], ['mensagem', msg]];
+    if (!this.checkValidity() || !nome || !email || !celular) {
+      const fields = [['nome', nome], ['email', email], ['celular', celular]];
       const firstEmpty = fields.find(([, val]) => !val);
       if (firstEmpty) this[firstEmpty[0]].focus();
       this.reportValidity();
@@ -1833,11 +1833,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     const waText = encodeURIComponent(
       `Olá! Vim pelo site da Hochburg e gostaria de saber mais.\n\n` +
-      `Nome: ${nome}\nEmpresa: ${empresa}\nE-mail: ${email}\n\n${msg}`
+      `Nome: ${nome}\nE-mail: ${email}\nCelular: ${celular}`
     );
     window.open(`https://wa.me/5511926391931?text=${waText}`, '_blank');
 
-    window.HB_trackFormSubmit();
+    // normaliza celular pro formato que Google (E.164) e Meta (só dígitos, com DDI) esperam
+    const digits = celular.replace(/\D/g, '');
+    const phoneDigits = digits.length <= 11 ? '55' + digits : digits;
+    const [firstName, ...restName] = nome.split(/\s+/);
+    const lastName = restName.join(' ');
+    const emailNorm = email.toLowerCase();
+
+    window.HB_trackFormSubmit({
+      google: {
+        email: emailNorm,
+        phone_number: '+' + phoneDigits,
+        address: { first_name: firstName, last_name: lastName }
+      },
+      meta: {
+        em: emailNorm,
+        ph: phoneDigits,
+        fn: firstName,
+        ln: lastName
+      }
+    });
   });
 </script>
 </body>
