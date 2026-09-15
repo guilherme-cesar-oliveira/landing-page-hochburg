@@ -10,7 +10,7 @@ Seções: Abordagem · Problema · Produtos · Padrão Hochburg · Leads/UX/Desi
 Busca com IA · Método · Segurança · FAQ · Contato. A seção de FAQ responde buscas
 informacionais (o que é landing page, lead, UX, layout, tipos/exemplos de site etc.) e
 tem marcação `FAQPage` em JSON-LD. Inclui parceria com a Origenow, links sociais no
-rodapé (Facebook e WhatsApp; Instagram e TikTok ainda não existem, por isso não
+rodapé (Facebook, LinkedIn e WhatsApp; Instagram e TikTok ainda não existem, por isso não
 aparecem), botão flutuante de WhatsApp e formulário de contato que abre só o WhatsApp.
 
 ## Arquivos
