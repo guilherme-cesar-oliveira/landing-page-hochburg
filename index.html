@@ -60,6 +60,13 @@
   } else {
     window.addEventListener('load', HB_scheduleThirdPartyTags);
   }
+
+  // cache básico dos assets estáticos próprios (imagens/ícones) via Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
