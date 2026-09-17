@@ -52,6 +52,28 @@
     fbLib.async = true;
     fbLib.src = 'https://connect.facebook.net/en_US/fbevents.js';
     document.head.appendChild(fbLib);
+
+    // botão flutuante do WhatsApp (e o balão que aponta pra ele) só aparecem
+    // agora - antes disso, nem as tags de terceiro existiam nem esse convite
+    // pra conversa fazia sentido aparecer
+    var fab = document.getElementById('whatsappFab');
+    if (fab) fab.classList.add('visible');
+    var tip = document.getElementById('whatsappTip');
+    if (tip) {
+      var showTip = setTimeout(function () { tip.classList.add('show'); }, 2500);
+      var hideTip = setTimeout(function () { tip.classList.remove('show'); }, 11000);
+      var dismissTip = function () {
+        tip.classList.remove('show');
+        clearTimeout(showTip);
+        clearTimeout(hideTip);
+        window.removeEventListener('scroll', dismissOnScroll);
+      };
+      var dismissOnScroll = function () {
+        if ((window.scrollY || window.pageYOffset || 0) > 500) dismissTip();
+      };
+      tip.addEventListener('click', dismissTip);
+      window.addEventListener('scroll', dismissOnScroll, { passive: true });
+    }
   };
 
   // cache básico dos assets estáticos próprios (imagens/ícones) via Service Worker
@@ -383,9 +405,13 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     background:#25d366;color:#fff;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 8px 24px rgba(0,0,0,.28);
-    transition:transform .18s ease, box-shadow .18s ease;
+    opacity:0;transform:scale(.6);pointer-events:none;
+    transition:transform .18s ease, box-shadow .18s ease, opacity .3s ease;
   }
-  .whatsapp-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 28px rgba(0,0,0,.34);}
+  /* só aparece depois que as tags de terceiro são injetadas (engajamento real
+     detectado) - ver window.HB_injectThirdPartyTags */
+  .whatsapp-fab.visible{opacity:1;transform:scale(1);pointer-events:auto;}
+  .whatsapp-fab.visible:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 28px rgba(0,0,0,.34);}
   .whatsapp-fab svg{width:28px;height:28px;}
   .whatsapp-fab::before{
     content:"";position:absolute;inset:0;border-radius:50%;
@@ -1910,35 +1936,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (e.key === 'Escape' && !waConfirmOverlay.hidden) closeWaConfirm();
   });
 
-  // clique em qualquer link de WhatsApp (botão flutuante, balão, contato e menu mobile)
+  // clique em qualquer link de WhatsApp (botão flutuante, balão, contato e menu mobile):
+  // só o botão flutuante pede confirmação antes de sair - os outros (balão, contato,
+  // menu mobile) já são um clique deliberado dentro do conteúdo, vão direto
   document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
     a.addEventListener('click', (e) => {
-      e.preventDefault();
-      const source = a.id === 'whatsappFab' ? 'floating_button'
-        : a.id === 'whatsappTip' ? 'floating_tooltip'
+      if (a.id === 'whatsappFab') {
+        e.preventDefault();
+        openWaConfirm(a.href, 'floating_button');
+        return;
+      }
+      const source = a.id === 'whatsappTip' ? 'floating_tooltip'
         : a.closest('.mobile-nav') ? 'mobile_menu'
         : 'contact_section';
-      openWaConfirm(a.href, source);
+      window.HB_trackWhatsAppClick(source);
     });
   });
-
-  // balão do WhatsApp: aparece depois de um tempo, some sozinho ou ao interagir
-  const whatsappTip = document.getElementById('whatsappTip');
-  if (whatsappTip) {
-    const showTip = setTimeout(() => whatsappTip.classList.add('show'), 2500);
-    const hideTip = setTimeout(() => whatsappTip.classList.remove('show'), 11000);
-    const dismissTip = () => {
-      whatsappTip.classList.remove('show');
-      clearTimeout(showTip);
-      clearTimeout(hideTip);
-      window.removeEventListener('scroll', dismissOnScroll);
-    };
-    const dismissOnScroll = () => {
-      if ((window.scrollY || window.pageYOffset || 0) > 500) dismissTip();
-    };
-    whatsappTip.addEventListener('click', dismissTip);
-    window.addEventListener('scroll', dismissOnScroll, { passive: true });
-  }
 
   // mobile nav toggle (overlay lives outside header to avoid the
   // backdrop-filter containing-block trap for position:fixed children)
