@@ -542,15 +542,10 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     transition:background .18s ease;
   }
   .service-card:hover{background:#fff;}
-  .service-card--highlight{
-    background:linear-gradient(180deg, rgba(190,239,125,.14), var(--card) 65%);
-    box-shadow:inset 0 0 0 2px var(--accent);
-  }
-  .service-card--highlight:hover{background:linear-gradient(180deg, rgba(190,239,125,.14), #fff 65%);}
   .service-card .idx{font-family:var(--ff-mono);font-size:12px;color:var(--muted-2);margin-bottom:20px;}
   .services-grid .service-card h3{color:var(--ink);margin-bottom:10px;}
   .services-grid .service-card p{color:var(--muted);font-size:14px;flex-grow:1;}
-  .service-card .price{
+  .service-card .price,.wp-highlight-card .price{
     font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.02em;
     color:var(--accent-onlight);margin-top:20px;
     display:flex;flex-direction:column;gap:4px;align-items:flex-start;
@@ -559,10 +554,10 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
     font-family:var(--ff-mono);font-size:12.5px;font-weight:600;
     color:var(--muted-2);text-decoration:line-through;margin-right:0;
   }
-  .service-card .price-new{
+  .service-card .price-new,.wp-highlight-card .price-new{
     color:var(--accent-onlight);font-size:22px;font-weight:800;letter-spacing:-.01em;
   }
-  .service-card .price-lead{
+  .service-card .price-lead,.wp-highlight-card .price-lead{
     font-family:var(--ff-mono);font-size:11.5px;font-weight:600;
     color:var(--muted-2);text-transform:uppercase;letter-spacing:.04em;
   }
@@ -586,6 +581,23 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   }
   @media (max-width:560px){
     .promo-banner{padding:14px 18px;font-size:13.5px;}
+  }
+
+  /* ---------- card de destaque (fora da grade de serviços) ---------- */
+  .wp-highlight-card{
+    position:relative;
+    display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;
+    background:linear-gradient(135deg, rgba(190,239,125,.14), var(--card) 70%);
+    border:2px solid var(--accent);border-radius:var(--radius);
+    padding:30px 34px;margin-bottom:32px;
+  }
+  .wp-highlight-info{max-width:640px;}
+  .wp-highlight-info h3{color:var(--ink);font-size:19px;margin-bottom:8px;}
+  .wp-highlight-info p{color:var(--muted);font-size:14.5px;}
+  .wp-highlight-card .price{margin-top:0;flex-shrink:0;}
+  @media (max-width:768px){
+    .wp-highlight-card{padding:26px 24px;}
+    .wp-highlight-card .promo-flag{position:static;margin-bottom:14px;display:inline-block;}
   }
   .payment-note{
     margin-top:24px;display:flex;align-items:center;gap:8px;
@@ -1148,6 +1160,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span>Site institucional com <strong>25% OFF</strong> (de R$1.200 por R$900) e landing page de alta conversão com <strong>50% OFF</strong> (de R$750 por R$375).</span>
     </div>
 
+    <div class="wp-highlight-card reveal">
+      <span class="promo-flag">Análise grátis</span>
+      <div class="wp-highlight-info">
+        <h3>Otimização de velocidade de site WordPress</h3>
+        <p>Para quem já tem site em WordPress e não quer investir num site novo agora. Identificamos o que está deixando ele lento (imagens, plugins, hospedagem, banco de dados) e corrigimos, sem trocar de plataforma. Começa com uma análise superficial gratuita.</p>
+      </div>
+      <span class="price"><span class="price-lead">A partir de</span><span class="price-new">R$150</span></span>
+    </div>
+
     <div class="services-grid reveal">
       <div class="service-card">
         <span class="promo-flag">-25%</span>
@@ -1169,27 +1190,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Loja de verdade, com carrinho e checkout, não um catálogo de produtos. Sua, sem depender de marketplace. Operação e inteligência de dados com a parceira Origenow.</p>
         <span class="price"><span class="price-lead">A partir de</span><span class="price-new">R$2.500</span><span class="price-lead">suporte 1 ano grátis</span></span>
       </div>
-      <div class="service-card service-card--highlight">
-        <span class="promo-flag">Análise grátis</span>
-        <span class="idx">04</span>
-        <h3>Otimização de velocidade de site WordPress</h3>
-        <p>Para quem já tem site em WordPress e não quer investir num site novo agora. Identificamos o que está deixando ele lento (imagens, plugins, hospedagem, banco de dados) e corrigimos, sem trocar de plataforma. Começa com uma análise superficial gratuita.</p>
-        <span class="price"><span class="price-lead">A partir de</span><span class="price-new">R$150</span></span>
-      </div>
       <div class="service-card">
-        <span class="idx">05</span>
+        <span class="idx">04</span>
         <h3>Métricas e tráfego prontos</h3>
         <p>Eventos e conversões já configurados para GA4, Search Console, Google Meu Negócio, Google Ads, Meta e TikTok Ads.</p>
         <span class="price">Incluso em todo projeto</span>
       </div>
       <div class="service-card">
-        <span class="idx">06</span>
+        <span class="idx">05</span>
         <h3>Automação de IA no WhatsApp</h3>
         <p>Atendimento e qualificação de lead automatizados no WhatsApp, integrados ao site.</p>
         <span class="price">Opcional · sob demanda</span>
       </div>
       <div class="service-card">
-        <span class="idx">07</span>
+        <span class="idx">06</span>
         <h3>Gestão de tráfego Google e Meta</h3>
         <p>Criação e gestão das campanhas pagas depois que o site entra no ar, com leitura das métricas que já deixamos prontas.</p>
         <span class="price">Opcional · sob demanda</span>
