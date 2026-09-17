@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://connect.facebook.net">
+
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -733,6 +736,9 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   /* ---------- reveal animation ---------- */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.in-view{opacity:1;transform:translateY(0);}
+  /* o hero é a primeira coisa que a pessoa vê: não pode depender de JS/IntersectionObserver
+     pra ficar visível, senão quebra o FCP/LCP (conteúdo "invisível" até o JS rodar) */
+  .hero .reveal{opacity:1;transform:none;}
 
   /* ---------- responsive ---------- */
   @media (max-width:980px){
@@ -916,7 +922,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero" id="inicio">
   <div class="hero-visual" aria-hidden="true">
     <div class="glow"></div>
-    <img src="hero-obsidiana.jpg" alt="" loading="eager">
+    <img src="hero-obsidiana.jpg" alt="" width="1400" height="1875" loading="eager" fetchpriority="high" decoding="async">
     <div class="sheen-wrap"><div class="sheen"></div></div>
   </div>
   <div class="wrap">
