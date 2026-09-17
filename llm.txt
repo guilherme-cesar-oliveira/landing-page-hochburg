@@ -1,6 +1,6 @@
 # Hochburg
 
-> Estúdio de criação de sites de alta conversão para a era da IA. Sites institucionais, landing pages e lojas virtuais rápidos (Google PageSpeed 90%+), seguros e prontos para serem lidos por buscadores e por modelos de linguagem. Um ano de suporte incluso em todo projeto. Landing pages a partir de R$750, sites institucionais a partir de R$1.200 e lojas virtuais a partir de R$2.500.
+> Estúdio de criação de sites de alta conversão para a era da IA. Sites institucionais, landing pages e lojas virtuais rápidos (Google PageSpeed 90%+), seguros e prontos para serem lidos por buscadores e por modelos de linguagem. Um ano de suporte incluso em todo projeto. Landing pages a partir de R$750, sites institucionais a partir de R$1.200, lojas virtuais a partir de R$2.500 e otimização de velocidade de site WordPress existente a partir de R$150 (com análise superficial gratuita).
 
 A Hochburg não é só mais uma agência de site. O foco é presença na era da IA: fazer o negócio do cliente ser encontrável, citável e confiável para o Google AI Overviews (Gemini), o ChatGPT, o Perplexity e o Copilot, que hoje respondem no lugar da lista de links. A Hochburg nasceu em segurança ofensiva (testes de intrusão) e migrou para a construção de sites, trazendo a mesma preocupação com brechas para o desenvolvimento web. O discurso da marca é direto: site lento, WordPress inchado e código feito no improviso ("vibe coding") custam venda, ranqueamento e reputação.
 
@@ -18,6 +18,7 @@ A Hochburg não é só mais uma agência de site. O foco é presença na era da 
 - **Landing page de alta conversão**: página única para campanhas de tráfego pago, com eventos de conversão configurados. Preço cheio a partir de **R$750**; **promoção atual: 50% OFF, a partir de R$375**.
 - **Site institucional**: múltiplas páginas, estrutura para SEO e conversão. Preço cheio a partir de **R$1.200**; **promoção atual: 25% OFF, a partir de R$900**.
 - **Loja virtual própria**: e-commerce de verdade, com carrinho e checkout (não é catálogo de produtos). A partir de **R$2.500**, com 1 ano de suporte grátis. Sem desconto promocional.
+- **Otimização de velocidade de site WordPress**: para quem já tem site em WordPress e não quer investir num site novo agora. Identifica e corrige o que está deixando o site lento (imagem sem otimização, plugin em excesso, hospedagem fraca, banco de dados inchado), sem trocar de plataforma. A partir de **R$150**, com **análise superficial gratuita** antes de fechar.
 
 Todos os preços são "a partir de" e o valor final depende do escopo. Um ano de suporte está incluso em todos. Pagamento parcelável em até 6x no cartão de crédito.
 
