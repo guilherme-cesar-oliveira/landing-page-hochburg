@@ -45,10 +45,20 @@
     fbLib.src = 'https://connect.facebook.net/en_US/fbevents.js';
     document.head.appendChild(fbLib);
   }
+  // depois do 'load' ainda espera o navegador ficar ocioso (nada de layout/paint
+  // pendente) antes de injetar as tags — garante que só entram depois que a página
+  // já está visualmente completa e parada, não só com os recursos baixados
+  function HB_scheduleThirdPartyTags() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(HB_loadThirdPartyTags, { timeout: 3000 });
+    } else {
+      setTimeout(HB_loadThirdPartyTags, 1500);
+    }
+  }
   if (document.readyState === 'complete') {
-    HB_loadThirdPartyTags();
+    HB_scheduleThirdPartyTags();
   } else {
-    window.addEventListener('load', HB_loadThirdPartyTags);
+    window.addEventListener('load', HB_scheduleThirdPartyTags);
   }
 </script>
 <noscript><img height="1" width="1" style="display:none"
