@@ -1,8 +1,8 @@
-// Cache básico só dos arquivos estáticos da própria Hochburg (imagens/ícones) —
-// não intercepta GTM/gtag.js/Meta Pixel/fontes (são de outra origem).
-// Ao trocar um asset (ex.: nova versão do hero), bump o número da versão abaixo
-// pra invalidar o cache antigo.
-const CACHE_NAME = 'hochburg-static-v1';
+// Cache básico só dos arquivos estáticos da própria Hochburg (imagens/ícones/fontes) —
+// não intercepta GTM/gtag.js/Meta Pixel (são de outra origem).
+// Ao trocar um asset (ex.: nova versão do hero ou da fonte), bump o número da
+// versão abaixo pra invalidar o cache antigo.
+const CACHE_NAME = 'hochburg-static-v2';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -39,9 +39,9 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // imagens/ícones estáticos: serve do cache na hora (stale-while-revalidate),
+  // imagens/ícones/fontes estáticos: serve do cache na hora (stale-while-revalidate),
   // e atualiza o cache em segundo plano pra próxima visita
-  if (/\.(jpg|jpeg|webp|png|svg|ico)$/.test(url.pathname)) {
+  if (/\.(jpg|jpeg|webp|png|svg|ico|woff2?)$/.test(url.pathname)) {
     event.respondWith(
       caches.match(req).then((cached) => {
         const network = fetch(req)

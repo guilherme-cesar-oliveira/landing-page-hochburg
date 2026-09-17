@@ -190,14 +190,28 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- fonte carregada sem bloquear o primeiro paint: com font-display:swap o texto
-     já aparece na fonte de fallback e troca quando a fonte chegar -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@500;800&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@500;800&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@500;800&display=swap"></noscript>
+<!-- fontes hospedadas no próprio site (baixadas do Google Fonts): elimina a ida a
+     fonts.googleapis.com/fonts.gstatic.com. São arquivos de fonte variável (cobrem
+     todos os pesos usados num único arquivo por família) e só o subset "latin" -
+     único que o conteúdo em português do site usa, confirmado caractere por
+     caractere (o único símbolo fora do "latin" no site inteiro é um emoji, que o
+     navegador sempre desenha com a fonte de emoji do sistema, nunca com essas). -->
+<link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  @font-face{
+    font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;
+    src:url('fonts/inter.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;
+    src:url('fonts/jetbrains-mono.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Manrope';font-style:normal;font-weight:500 800;font-display:swap;
+    src:url('fonts/manrope.woff2') format('woff2');
+  }
   :root{
     --paper:#f2f2f3;
     --paper-alt:#e9e9ea;
