@@ -36,6 +36,7 @@
   window.HB_injectThirdPartyTags = function () {
     if (HB_thirdPartyTagsInjected) return;
     HB_thirdPartyTagsInjected = true;
+    console.log('[HB] Injetando tags de terceiro (GTM, gtag.js, Meta Pixel) — primeira interação real detectada.');
 
     var gtm = document.createElement('script');
     gtm.async = true;
@@ -1747,6 +1748,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (pageViewSent || !window.HB_isHuman()) return;
       pageViewSent = true;
       window.HB_injectThirdPartyTags();
+      console.log('[HB] Evento disparado: engaged_page_view (GA4) + conversão Visualização de página (Ads) + PageView (Meta)');
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: 'engaged_page_view', page_location: location.href, page_path: location.pathname }, campaignParams));
       if (typeof gtag === 'function') {
@@ -1769,6 +1771,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.HB_trackWhatsAppClick = function (source) {
       if (!window.HB_isHuman()) return;
       window.HB_injectThirdPartyTags();
+      console.log('[HB] Evento disparado: whatsapp_click (GA4) + conversão Contato (Ads) + Contact (Meta) — origem:', source);
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: 'whatsapp_click', method: source }, campaignParams));
       if (typeof gtag === 'function') {
@@ -1783,6 +1786,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.HB_trackFormSubmit = function (userData) {
       if (!window.HB_isHuman()) return;
       window.HB_injectThirdPartyTags();
+      console.log('[HB] Evento disparado: generate_lead (GA4) + conversão Lead (Ads) + Lead (Meta)');
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: 'form_submit_whatsapp' }, campaignParams));
       if (typeof gtag === 'function') {
