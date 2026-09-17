@@ -594,10 +594,17 @@ src="https://www.facebook.com/tr?id=1585497672474777&ev=PageView&noscript=1"
   .wp-highlight-info{max-width:640px;}
   .wp-highlight-info h3{color:var(--ink);font-size:19px;margin-bottom:8px;}
   .wp-highlight-info p{color:var(--muted);font-size:14.5px;}
-  .wp-highlight-card .price{margin-top:0;flex-shrink:0;}
+  .wp-highlight-card .price{
+    margin-top:0;flex-shrink:0;align-items:center;gap:2px;
+    background:var(--accent-ink);color:var(--paper);
+    padding:16px 26px;border-radius:12px;
+  }
+  .wp-highlight-card .price-lead{color:var(--muted-on-dark);}
+  .wp-highlight-card .price-new{color:var(--accent);font-size:28px;}
   @media (max-width:768px){
     .wp-highlight-card{padding:26px 24px;}
     .wp-highlight-card .promo-flag{position:static;margin-bottom:14px;display:inline-block;}
+    .wp-highlight-card .price{width:100%;}
   }
   .payment-note{
     margin-top:24px;display:flex;align-items:center;gap:8px;
