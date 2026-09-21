@@ -1937,20 +1937,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (e.key === 'Escape' && !waConfirmOverlay.hidden) closeWaConfirm();
   });
 
-  // clique em qualquer link de WhatsApp (botão flutuante, balão, contato e menu mobile):
-  // só o botão flutuante pede confirmação antes de sair - os outros (balão, contato,
-  // menu mobile) já são um clique deliberado dentro do conteúdo, vão direto
+  // clique em qualquer link de WhatsApp (botão flutuante, balão, contato, menu mobile
+  // e rodapé): todos pedem confirmação, e o evento Contact só dispara ao confirmar
   document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
     a.addEventListener('click', (e) => {
-      if (a.id === 'whatsappFab') {
-        e.preventDefault();
-        openWaConfirm(a.href, 'floating_button');
-        return;
-      }
-      const source = a.id === 'whatsappTip' ? 'floating_tooltip'
+      e.preventDefault();
+      const source = a.id === 'whatsappFab' ? 'floating_button'
+        : a.id === 'whatsappTip' ? 'floating_tooltip'
         : a.closest('.mobile-nav') ? 'mobile_menu'
         : 'contact_section';
-      window.HB_trackWhatsAppClick(source);
+      openWaConfirm(a.href, source);
     });
   });
 
