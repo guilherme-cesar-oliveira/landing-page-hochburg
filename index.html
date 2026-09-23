@@ -1806,8 +1806,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const trusted = (e) => e && e.isTrusted === true;
 
     // ---- país do visitante (ipinfo.io): evento só dispara se for do Brasil ----
-    // Consulta uma vez por sessão, disparada na primeira interação confiável (junto
-    // com o fingerprint) pra já estar pronta quando o evento for decidido. Se a
+    // Consulta uma vez por sessão, só no momento de decidir um evento (depois do
+    // fingerprint aprovar) - nunca no carregamento da página. Se a
     // consulta falhar (limite do plano gratuito, bloqueador, timeout de 3s) o evento
     // NÃO é bloqueado: melhor deixar passar do que perder conversão de cliente real.
     let geoPromise = null;
@@ -1850,8 +1850,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         return true;
       });
     };
-    ['pointerdown', 'pointermove', 'touchstart', 'wheel', 'keydown'].forEach((evt) =>
-      window.addEventListener(evt, (e) => { if (trusted(e) && !hardBot()) geoLoad(); }, { passive: true, once: false }));
+    // adianta a consulta só quando a pessoa já passou no fingerprint E abriu o modal do
+    // WhatsApp (o tempo de ler e clicar em "Continuar" cobre a latência do ipinfo);
+    // nunca no carregamento nem em simples movimento de mouse
+    window.HB_geoPrefetch = function () { if (window.HB_isHuman()) geoLoad(); };
 
     window.addEventListener('pointermove', (e) => {
       if (!trusted(e)) return;
@@ -2058,6 +2060,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function openWaConfirm(href, source) {
     waPending = { href, source, openedAt: performance.now() };
     waConfirmOverlay.hidden = false;
+    window.HB_geoPrefetch();
   }
   function closeWaConfirm() {
     waConfirmOverlay.hidden = true;
