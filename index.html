@@ -1804,6 +1804,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const pageStart = performance.now();
     const beh = { moves: 0, dist: 0, dirs: new Set(), lastX: null, lastY: null, downs: 0, touches: 0, keys: 0, wheels: 0, lastKeyAt: 0, firstTrusted: false };
     const trusted = (e) => e && e.isTrusted === true;
+
+    // ---- país do visitante (ipinfo.io): evento só dispara se for do Brasil ----
+    // Consulta uma vez por sessão, disparada na primeira interação confiável (junto
+    // com o fingerprint) pra já estar pronta quando o evento for decidido. Se a
+    // consulta falhar (limite do plano gratuito, bloqueador, timeout de 3s) o evento
+    // NÃO é bloqueado: melhor deixar passar do que perder conversão de cliente real.
+    let geoPromise = null;
+    function geoLoad() {
+      if (geoPromise) return geoPromise;
+      try {
+        const c = JSON.parse(sessionStorage.getItem('hb_geo') || 'null');
+        if (c && c.country) return (geoPromise = Promise.resolve(c));
+      } catch (e) {}
+      geoPromise = new Promise((resolve) => {
+        const ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+        const timer = setTimeout(() => { if (ctrl) ctrl.abort(); resolve(null); }, 3000);
+        fetch('https://ipinfo.io/json', { signal: ctrl ? ctrl.signal : undefined, cache: 'no-store' })
+          .then((r) => { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+          .then((d) => {
+            clearTimeout(timer);
+            const g = { country: d.country || '', org: d.org || '' };
+            try { sessionStorage.setItem('hb_geo', JSON.stringify(g)); } catch (e) {}
+            resolve(g);
+          })
+          .catch(() => { clearTimeout(timer); resolve(null); });
+      });
+      return geoPromise;
+    }
+    window.HB_geoAllows = function () {
+      return geoLoad().then((g) => {
+        if (!g) { console.log('[HB] País não verificado (ipinfo indisponível) — evento liberado'); return true; }
+        if (g.country !== 'BR') { console.log('[HB] Evento BLOQUEADO — IP fora do Brasil:', g.country, g.org); return false; }
+        return true;
+      });
+    };
+    ['pointerdown', 'pointermove', 'touchstart', 'wheel', 'keydown'].forEach((evt) =>
+      window.addEventListener(evt, (e) => { if (trusted(e) && !hardBot()) geoLoad(); }, { passive: true, once: false }));
+
     window.addEventListener('pointermove', (e) => {
       if (!trusted(e)) return;
       beh.firstTrusted = true; beh.moves++;
@@ -1931,17 +1969,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function sendEngagedPageView() {
       if (pageViewSent || !window.HB_isHuman()) return;
       pageViewSent = true;
-      window.HB_injectThirdPartyTags();
-      console.log('[HB] Evento disparado: engaged_page_view (GA4) + conversão Visualização de página (Ads) + PageView (Meta)');
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push(Object.assign({ event: 'engaged_page_view', page_location: location.href, page_path: location.pathname }, campaignParams));
-      if (typeof gtag === 'function') {
-        gtag('event', 'page_view', Object.assign({ page_location: location.href, page_path: location.pathname, page_title: document.title }, campaignParams));
-      }
-      fireAdsConversion(AW_CONVERSION_PAGE_VIEW, { value: 1.0, currency: 'BRL' });
-      if (typeof fbq === 'function') {
-        fbq('track', 'PageView');
-      }
+      window.HB_geoAllows().then((ok) => {
+        if (!ok) return;
+        window.HB_injectThirdPartyTags();
+        console.log('[HB] Evento disparado: engaged_page_view (GA4) + conversão Visualização de página (Ads) + PageView (Meta)');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: 'engaged_page_view', page_location: location.href, page_path: location.pathname }, campaignParams));
+        if (typeof gtag === 'function') {
+          gtag('event', 'page_view', Object.assign({ page_location: location.href, page_path: location.pathname, page_title: document.title }, campaignParams));
+        }
+        fireAdsConversion(AW_CONVERSION_PAGE_VIEW, { value: 1.0, currency: 'BRL' });
+        if (typeof fbq === 'function') {
+          fbq('track', 'PageView');
+        }
+      });
     }
     function onScrollCheck() {
       // scroll sozinho não prova nada (pode ser programático); só remove o
@@ -1956,37 +1997,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.HB_trackWhatsAppClick = function (source) {
       const rep = humanReport();
       if (!rep.human) { console.log('[HB] Contato NÃO disparado — score', rep.score, rep.reasons); return; }
-      if (!cooldownOk('contact')) { console.log('[HB] Contato ignorado — já contado nos últimos 10 min nesta sessão'); return; }
-      window.HB_injectThirdPartyTags();
-      console.log('[HB] Evento disparado: whatsapp_click (GA4) + conversão Contato (Ads) + Contact (Meta) — origem:', source);
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push(Object.assign({ event: 'whatsapp_click', method: source }, campaignParams));
-      if (typeof gtag === 'function') {
-        gtag('event', 'whatsapp_click', Object.assign({ method: source }, campaignParams));
-      }
-      fireAdsConversion(AW_CONVERSION_CONTATO);
-      if (typeof fbq === 'function') {
-        fbq('track', 'Contact', { content_name: 'whatsapp_' + source });
-      }
+      window.HB_geoAllows().then((ok) => {
+        if (!ok) return;
+        if (!cooldownOk('contact')) { console.log('[HB] Contato ignorado — já contado nos últimos 10 min nesta sessão'); return; }
+        window.HB_injectThirdPartyTags();
+        console.log('[HB] Evento disparado: whatsapp_click (GA4) + conversão Contato (Ads) + Contact (Meta) — origem:', source);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: 'whatsapp_click', method: source }, campaignParams));
+        if (typeof gtag === 'function') {
+          gtag('event', 'whatsapp_click', Object.assign({ method: source }, campaignParams));
+        }
+        fireAdsConversion(AW_CONVERSION_CONTATO);
+        if (typeof fbq === 'function') {
+          fbq('track', 'Contact', { content_name: 'whatsapp_' + source });
+        }
+      });
     };
 
     window.HB_trackFormSubmit = function (userData) {
       const rep = humanReport();
       if (!rep.human) { console.log('[HB] Lead NÃO disparado — score', rep.score, rep.reasons); return; }
-      if (!cooldownOk('lead')) { console.log('[HB] Lead ignorado — já contado nos últimos 10 min nesta sessão'); return; }
-      window.HB_injectThirdPartyTags();
-      console.log('[HB] Evento disparado: generate_lead (GA4) + conversão Lead (Ads) + Lead (Meta)');
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push(Object.assign({ event: 'form_submit_whatsapp' }, campaignParams));
-      if (typeof gtag === 'function') {
-        if (userData && userData.google) gtag('set', 'user_data', userData.google);
-        gtag('event', 'generate_lead', Object.assign({ method: 'whatsapp_form' }, campaignParams));
-      }
-      fireAdsConversion(AW_CONVERSION_LEAD);
-      if (typeof fbq === 'function') {
-        if (userData && userData.meta) fbq('init', META_PIXEL_ID, userData.meta);
-        fbq('track', 'Lead', { content_name: 'orcamento_whatsapp_form' });
-      }
+      window.HB_geoAllows().then((ok) => {
+        if (!ok) return;
+        if (!cooldownOk('lead')) { console.log('[HB] Lead ignorado — já contado nos últimos 10 min nesta sessão'); return; }
+        window.HB_injectThirdPartyTags();
+        console.log('[HB] Evento disparado: generate_lead (GA4) + conversão Lead (Ads) + Lead (Meta)');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({ event: 'form_submit_whatsapp' }, campaignParams));
+        if (typeof gtag === 'function') {
+          if (userData && userData.google) gtag('set', 'user_data', userData.google);
+          gtag('event', 'generate_lead', Object.assign({ method: 'whatsapp_form' }, campaignParams));
+        }
+        fireAdsConversion(AW_CONVERSION_LEAD);
+        if (typeof fbq === 'function') {
+          if (userData && userData.meta) fbq('init', META_PIXEL_ID, userData.meta);
+          fbq('track', 'Lead', { content_name: 'orcamento_whatsapp_form' });
+        }
+      });
     };
   })();
 
