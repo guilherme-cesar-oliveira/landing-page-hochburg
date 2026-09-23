@@ -1796,23 +1796,101 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'insomnia', 'scrapy', 'httrack', 'libwww-perl', 'apache-httpclient'
     ].join('|'), 'i');
 
-    let hadRealInteraction = false;
-    const markInteraction = () => { hadRealInteraction = true; };
-    ['pointerdown', 'pointermove', 'touchstart', 'keydown', 'mousemove', 'wheel']
-      .forEach(evt => window.addEventListener(evt, markInteraction, { once: true, passive: true }));
+    // ---- score de "humano": ambiente + comportamento, só com eventos confiáveis ----
+    // Só conta evento com isTrusted === true (gerado pelo navegador a partir de input
+    // real, não por dispatchEvent/.click() de script). Nenhum sinal isolado prova que
+    // é humano, por isso é um score: bot que forja tudo ainda passa, mas o custo de
+    // passar sobe (precisa de ambiente limpo + movimento plausível + tempo na página).
+    const pageStart = performance.now();
+    const beh = { moves: 0, dist: 0, dirs: new Set(), lastX: null, lastY: null, downs: 0, touches: 0, keys: 0, wheels: 0, lastKeyAt: 0, firstTrusted: false };
+    const trusted = (e) => e && e.isTrusted === true;
+    window.addEventListener('pointermove', (e) => {
+      if (!trusted(e)) return;
+      beh.firstTrusted = true; beh.moves++;
+      if (beh.lastX !== null) {
+        const dx = e.clientX - beh.lastX, dy = e.clientY - beh.lastY, d = Math.hypot(dx, dy);
+        beh.dist += d;
+        if (d > 2) beh.dirs.add(Math.round(Math.atan2(dy, dx) / (Math.PI / 4)));
+      }
+      beh.lastX = e.clientX; beh.lastY = e.clientY;
+    }, { passive: true });
+    window.addEventListener('pointerdown', (e) => { if (trusted(e)) { beh.firstTrusted = true; beh.downs++; } }, { passive: true });
+    window.addEventListener('touchstart', (e) => { if (trusted(e)) { beh.firstTrusted = true; beh.touches++; } }, { passive: true });
+    window.addEventListener('touchmove', (e) => { if (trusted(e)) { beh.firstTrusted = true; beh.touches++; } }, { passive: true });
+    window.addEventListener('wheel', (e) => { if (trusted(e)) { beh.firstTrusted = true; beh.wheels++; } }, { passive: true });
+    window.addEventListener('keydown', (e) => { if (trusted(e)) { beh.firstTrusted = true; beh.keys++; beh.lastKeyAt = performance.now(); } }, { passive: true });
 
-    function isLikelyBot() {
-      if (BOT_UA_RE.test(UA)) return true;
-      if (navigator.webdriver === true) return true;
-      if (typeof screen !== 'undefined' && (screen.width === 0 || screen.height === 0)) return true;
-      if (Array.isArray(navigator.languages) && navigator.languages.length === 0) return true;
-      return false;
+    function hardBot() {
+      if (BOT_UA_RE.test(UA)) return 'user-agent de bot/crawler';
+      if (navigator.webdriver === true) return 'navigator.webdriver';
+      if (typeof screen !== 'undefined' && (screen.width === 0 || screen.height === 0)) return 'tela 0x0';
+      if (Array.isArray(navigator.languages) && navigator.languages.length === 0) return 'sem idiomas';
+      if (window.outerWidth === 0 && window.outerHeight === 0) return 'janela 0x0 (headless)';
+      return null;
     }
 
-    // exige que já tenha havido algum sinal de interação humana
-    // (mouse, toque, teclado ou scroll) além de não bater com um bot
-    window.HB_isHuman = function () {
-      return !isLikelyBot() && hadRealInteraction;
+    let envCache = null;
+    function envPenalties() {
+      if (envCache) return envCache;
+      const p = [];
+      const isMobileUA = /Mobi|Android|iPhone|iPad/i.test(UA);
+      if (/Chrome\//.test(UA) && !/Edg\//.test(UA) && !isMobileUA && !window.chrome) p.push('Chrome sem window.chrome');
+      if (/Chrome\//.test(UA) && !isMobileUA && navigator.plugins && navigator.plugins.length === 0) p.push('sem plugins no desktop');
+      if (isMobileUA && navigator.maxTouchPoints === 0) p.push('UA mobile sem touch');
+      try {
+        const gl = document.createElement('canvas').getContext('webgl');
+        const ext = gl && gl.getExtension('WEBGL_debug_renderer_info');
+        const r = ext ? String(gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)) : '';
+        if (/swiftshader|llvmpipe|softpipe|mesa offscreen/i.test(r)) p.push('renderizador WebGL por software');
+      } catch (e) {}
+      envCache = p;
+      return p;
+    }
+
+    function humanReport() {
+      const hb = hardBot();
+      if (hb) return { score: 0, human: false, reasons: [hb] };
+      const reasons = [];
+      let score = 0;
+      if (beh.firstTrusted) score += 25; else reasons.push('sem interação confiável (isTrusted)');
+      const motion = (beh.moves >= 6 && beh.dist >= 80 && beh.dirs.size >= 2) || beh.touches >= 2 || beh.wheels >= 1 || beh.keys >= 2;
+      if (motion) score += 30; else reasons.push('sem movimento/toque/scroll plausível');
+      if (performance.now() - pageStart >= 1500) score += 15; else reasons.push('menos de 1,5s na página');
+      const pen = envPenalties();
+      score += Math.max(0, 30 - pen.length * 10);
+      pen.forEach((x) => reasons.push(x));
+      return { score, human: score >= 75, reasons };
+    }
+    window.HB_humanReport = humanReport;
+
+    window.HB_isHuman = function () { return humanReport().human; };
+
+    // cooldown: o mesmo tipo de evento não é contado duas vezes em 10 min na mesma sessão
+    // (clique repetido/spam não infla a campanha)
+    function cooldownOk(key) {
+      try {
+        const last = Number(sessionStorage.getItem('hb_cd_' + key) || 0);
+        if (last && Date.now() - last < 10 * 60 * 1000) return false;
+        sessionStorage.setItem('hb_cd_' + key, String(Date.now()));
+      } catch (e) {}
+      return true;
+    }
+
+    // o clique em "Continuar" do modal precisa ser de verdade: evento confiável, com
+    // o modal aberto por um tempo humano e, se for mouse/toque, dentro do botão
+    window.HB_confirmClickIsHuman = function (e, openedAt, btn) {
+      const why = [];
+      if (!trusted(e)) why.push('clique não confiável (isTrusted=false)');
+      if (performance.now() - openedAt < 500) why.push('confirmou em menos de 0,5s');
+      if (e.detail === 0) {
+        if (performance.now() - beh.lastKeyAt > 800) why.push('clique sem mouse/toque/teclado');
+      } else if (btn && typeof e.clientX === 'number') {
+        const r = btn.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) why.push('coordenadas fora do botão');
+      }
+      const rep = humanReport();
+      if (!rep.human) rep.reasons.forEach((x) => why.push(x));
+      return { human: why.length === 0, why, score: rep.score };
     };
 
     // rótulos de conversão do Google Ads (conta AW-18445228237)
@@ -1866,16 +1944,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     }
     function onScrollCheck() {
-      hadRealInteraction = true;
+      // scroll sozinho não prova nada (pode ser programático); só remove o
+      // listener depois que o page view engajado realmente passou no score
       if ((window.scrollY || window.pageYOffset || 0) > 60) {
-        window.removeEventListener('scroll', onScrollCheck);
         sendEngagedPageView();
+        if (pageViewSent) window.removeEventListener('scroll', onScrollCheck);
       }
     }
     window.addEventListener('scroll', onScrollCheck, { passive: true });
 
     window.HB_trackWhatsAppClick = function (source) {
-      if (!window.HB_isHuman()) return;
+      const rep = humanReport();
+      if (!rep.human) { console.log('[HB] Contato NÃO disparado — score', rep.score, rep.reasons); return; }
+      if (!cooldownOk('contact')) { console.log('[HB] Contato ignorado — já contado nos últimos 10 min nesta sessão'); return; }
       window.HB_injectThirdPartyTags();
       console.log('[HB] Evento disparado: whatsapp_click (GA4) + conversão Contato (Ads) + Contact (Meta) — origem:', source);
       window.dataLayer = window.dataLayer || [];
@@ -1890,7 +1971,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     };
 
     window.HB_trackFormSubmit = function (userData) {
-      if (!window.HB_isHuman()) return;
+      const rep = humanReport();
+      if (!rep.human) { console.log('[HB] Lead NÃO disparado — score', rep.score, rep.reasons); return; }
+      if (!cooldownOk('lead')) { console.log('[HB] Lead ignorado — já contado nos últimos 10 min nesta sessão'); return; }
       window.HB_injectThirdPartyTags();
       console.log('[HB] Evento disparado: generate_lead (GA4) + conversão Lead (Ads) + Lead (Meta)');
       window.dataLayer = window.dataLayer || [];
@@ -1915,18 +1998,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let waPending = null;
 
   function openWaConfirm(href, source) {
-    waPending = { href, source };
+    waPending = { href, source, openedAt: performance.now() };
     waConfirmOverlay.hidden = false;
   }
   function closeWaConfirm() {
     waConfirmOverlay.hidden = true;
     waPending = null;
   }
-  waConfirmOk.addEventListener('click', () => {
+  waConfirmOk.addEventListener('click', (e) => {
     if (!waPending) return;
-    const { href, source } = waPending;
+    const { href, source, openedAt } = waPending;
+    // mede antes de fechar (com o modal fechado o botão não tem posição)
+    const verdict = window.HB_confirmClickIsHuman(e, openedAt, waConfirmOk);
     closeWaConfirm();
-    window.HB_trackWhatsAppClick(source);
+    // o WhatsApp sempre abre pra quem confirmou (nunca punimos o usuário); o que
+    // depende de passar na verificação é só o evento de conversão
+    if (verdict.human) {
+      window.HB_trackWhatsAppClick(source);
+    } else {
+      console.log('[HB] Contato NÃO disparado — confirmação suspeita, score', verdict.score, verdict.why);
+    }
     window.open(href, '_blank', 'noopener');
   });
   waConfirmCancel.addEventListener('click', closeWaConfirm);
@@ -2044,6 +2135,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const lastName = restName.join(' ');
     const emailNorm = email.toLowerCase();
 
+    // envio disparado por script (requestSubmit/dispatchEvent) não é conversão
+    if (!e.isTrusted) { console.log('[HB] Lead NÃO disparado — submit não confiável (isTrusted=false)'); return; }
     window.HB_trackFormSubmit({
       google: {
         email: emailNorm,
