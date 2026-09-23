@@ -1815,20 +1815,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (geoPromise) return geoPromise;
       try {
         const c = JSON.parse(sessionStorage.getItem('hb_geo') || 'null');
-        if (c && c.country) return (geoPromise = Promise.resolve(c));
+        if (c && c.country) {
+          console.log('[HB] IP: usando consulta em cache da sessão — país:', c.country, '| operadora:', c.org);
+          return (geoPromise = Promise.resolve(c));
+        }
       } catch (e) {}
+      console.log('[HB] IP: consultando ipinfo (api.ipinfo.io/lite/me)...');
+      const t0 = performance.now();
       geoPromise = new Promise((resolve) => {
         const ctrl = typeof AbortController === 'function' ? new AbortController() : null;
-        const timer = setTimeout(() => { if (ctrl) ctrl.abort(); resolve(null); }, 3000);
+        const timer = setTimeout(() => {
+          console.log('[HB] IP: consulta ao ipinfo estourou o tempo (3s)');
+          if (ctrl) ctrl.abort();
+          resolve(null);
+        }, 3000);
         fetch('https://api.ipinfo.io/lite/me?token=cea75800406c6d', { signal: ctrl ? ctrl.signal : undefined, cache: 'no-store' })
-          .then((r) => { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+          .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
           .then((d) => {
             clearTimeout(timer);
             const g = { country: d.country_code || '', org: ((d.asn || '') + ' ' + (d.as_name || '')).trim() };
+            console.log('[HB] IP: resposta do ipinfo em ' + Math.round(performance.now() - t0) + 'ms — país:', g.country, '(' + (d.country || '?') + ') | operadora:', g.org, '| continente:', d.continent || '?');
             try { sessionStorage.setItem('hb_geo', JSON.stringify(g)); } catch (e) {}
             resolve(g);
           })
-          .catch(() => { clearTimeout(timer); resolve(null); });
+          .catch((err) => { clearTimeout(timer); console.log('[HB] IP: falha na consulta ao ipinfo —', err && err.message ? err.message : err); resolve(null); });
       });
       return geoPromise;
     }
@@ -1836,6 +1846,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return geoLoad().then((g) => {
         if (!g) { console.log('[HB] País não verificado (ipinfo indisponível) — evento liberado'); return true; }
         if (g.country !== 'BR') { console.log('[HB] Evento BLOQUEADO — IP fora do Brasil:', g.country, g.org); return false; }
+        console.log('[HB] IP do Brasil — evento liberado');
         return true;
       });
     };
